@@ -11,6 +11,7 @@ export const site: SiteConfig = {
   description:
     "E-Creation conçoit et développe des sites web, applications mobiles, API et interfaces UI/UX pour transformer vos idées en produits numériques.",
   nav: [
+    { label: "Accueil", href: "/#accueil" },
     { label: "Services", href: "/#services" },
     { label: "Projets", href: "/#projets" },
     { label: "Approche", href: "/#approche" },
@@ -48,22 +49,30 @@ export const site: SiteConfig = {
   services: [
     {
       id: "web",
+      number: "01",
+      icon: "monitor",
       title: "Développement Web",
       description:
         "Sites web, applications métier, plateformes SaaS et interfaces web responsives.",
     },
     {
       id: "backend",
+      number: "02",
+      icon: "server",
       title: "Backend & API",
       description: "Architecture serveur, bases de données, API sécurisées et intégrations.",
     },
     {
       id: "mobile",
+      number: "03",
+      icon: "smartphone",
       title: "Développement Mobile",
       description: "Applications Android et iOS conçues pour une expérience fluide et cohérente.",
     },
     {
       id: "uiux",
+      number: "04",
+      icon: "pen-tool",
       title: "UI/UX Design",
       description: "Recherche, wireframes, maquettes haute fidélité, prototypes et design systems.",
     },

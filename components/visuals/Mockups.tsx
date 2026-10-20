@@ -202,3 +202,14 @@ export function PhoneMockup({ variant = "home" }: { variant?: PhoneVariant }) {
     </div>
   );
 }
+
+export function CodeCard() {
+  return (
+    <div className="mock-code" aria-hidden="true">
+      <Bar w="40%" tone="accent" />
+      <Bar w="78%" />
+      <Bar w="62%" />
+      <Bar w="70%" />
+    </div>
+  );
+}

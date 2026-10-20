@@ -170,10 +170,10 @@ export default async function ProjectCaseStudyPage({ params }: PageProps) {
                 </p>
               </div>
               <div className="cta__actions">
-                <Link className="btn btn--accent btn--lg" href="/#contact">
+                <Link className="btn btn--dark btn--lg" href="/#contact">
                   Discuter de mon projet
                 </Link>
-                <Link className="btn btn--ghost btn--lg" href="/#projets">
+                <Link className="btn btn--outline-dark btn--lg" href="/#projets">
                   Voir d&apos;autres projets
                 </Link>
               </div>

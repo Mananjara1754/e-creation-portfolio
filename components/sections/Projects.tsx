@@ -2,6 +2,7 @@ import Link from "next/link";
 import { site } from "@/config/site";
 import type { Project } from "@/config/site.types";
 import { Reveal } from "@/components/ui/Reveal";
+import { SectionHeading } from "@/components/ui/SectionHeading";
 import { CaseStudyLinkIcon } from "@/components/ui/CaseStudyLinkIcon";
 import { BrowserMockup, PhoneMockup, type BrowserVariant } from "@/components/visuals/Mockups";
 
@@ -61,13 +62,15 @@ export function Projects() {
     <section id="projets" className="section section--border" aria-labelledby="projects-title">
       <div className="container">
         <Reveal className="projects__head">
-          <h2 className="h2" id="projects-title">
-            Projets
-          </h2>
+          <SectionHeading label="SÉLECTION DE PROJETS" id="projects-title">
+            Des idées devenues des produits concrets.
+          </SectionHeading>
           <p className="muted projects__intro">
-            Quelques réalisations et concepts, du besoin de départ à l&apos;interface livrée.
+            Découvrez quelques exemples de notre approche du design et du développement, à travers
+            des interfaces, des fonctionnalités et des solutions pensées pour répondre à des besoins
+            précis.
           </p>
-          {site.demoMode && hasDemo && (
+          {hasDemo && (
             <p className="note">Projets de démonstration : à remplacer par vos réalisations.</p>
           )}
         </Reveal>
@@ -80,11 +83,13 @@ export function Projects() {
               </div>
               <div className="feature__text">
                 <div className="badges">
-                  <span className="badge">{featured.kind}</span>
+                  <span className="badge badge--accent">PROJET MIS EN AVANT</span>
                   {featured.isDemo && <span className="badge">Concept</span>}
                 </div>
                 <h3 className="feature__title">{featured.name}</h3>
-                <p className="muted">{featured.summary}</p>
+                <p className="muted">
+                  Type : {featured.kind.toLowerCase()}. {featured.summary}
+                </p>
                 <ProjectMeta project={featured} />
                 <div className="feature__foot">
                   <CaseStudy project={featured} />
@@ -95,8 +100,8 @@ export function Projects() {
         )}
 
         <div className="projects__grid">
-          {others.map((p) => (
-            <Reveal key={p.id} className="projects__cell">
+          {others.map((p, i) => (
+            <Reveal key={p.id} delay={i * 80} className="projects__cell">
               <article className="card pcard">
                 <div className="pcard__visual">
                   <ProjectVisual visual={p.visual} />
