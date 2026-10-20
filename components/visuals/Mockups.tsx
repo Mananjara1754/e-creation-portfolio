@@ -71,7 +71,7 @@ function WindowBar() {
   );
 }
 
-export type BrowserVariant = "hero" | "dashboard" | "shop";
+export type BrowserVariant = "hero" | "dashboard" | "shop" | "chat";
 
 export function BrowserMockup({ variant }: { variant: BrowserVariant }) {
   return (
@@ -124,6 +124,29 @@ export function BrowserMockup({ variant }: { variant: BrowserVariant }) {
                 <Bar w={i === 1 ? "35%" : i === 0 ? "40%" : "45%"} tone="accent" />
               </div>
             ))}
+          </div>
+        </div>
+      )}
+      {variant === "chat" && (
+        <div className="mock-body mock-body--stack">
+          <div className="mock-bubble mock-bubble--user">
+            <Bar w="40%" h={8} />
+          </div>
+          <div className="mock-bubble mock-bubble--ai">
+            <Bar w="90%" h={8} />
+            <Bar w="75%" h={8} />
+            <Bar w="50%" h={8} tone="accent" />
+          </div>
+          <div className="mock-chat__sources">
+            <span className="mock-chat__source">
+              <Bar w="100%" h={6} tone="surface" />
+            </span>
+            <span className="mock-chat__source">
+              <Bar w="100%" h={6} tone="surface" />
+            </span>
+          </div>
+          <div className="mock-chat__input">
+            <Bar w="55%" h={7} tone="muted" />
           </div>
         </div>
       )}
