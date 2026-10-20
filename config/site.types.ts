@@ -15,7 +15,18 @@ export interface Service {
   icon: ServiceIcon;
 }
 
-export type ProjectVisual = "dashboard" | "mobile" | "shop";
+export type ProjectVisual = "dashboard" | "mobile" | "shop" | "chat";
+
+export interface ProjectCaseStudy {
+  tagline: string;
+  context: string;
+  solution: string;
+  features: string[];
+  highlights: string[];
+  stack: StackGroup[];
+  repoHref?: string;
+  demoHref?: string;
+}
 
 export interface Project {
   id: string;
@@ -31,6 +42,8 @@ export interface Project {
   isDemo: boolean;
   /** Affiché uniquement si défini ET si la page existe réellement. */
   caseStudyHref?: string;
+  /** Contenu détaillé affiché sur la page dédiée (app/projets/[slug]). */
+  caseStudy?: ProjectCaseStudy;
   visual: ProjectVisual;
 }
 

@@ -11,11 +11,11 @@ export const site: SiteConfig = {
   description:
     "E-Creation conçoit et développe des sites web, applications mobiles, API et interfaces UI/UX pour transformer vos idées en produits numériques.",
   nav: [
-    { label: "Accueil", href: "#accueil" },
-    { label: "Services", href: "#services" },
-    { label: "Projets", href: "#projets" },
-    { label: "À propos", href: "#apropos" },
-    { label: "Contact", href: "#contact" },
+    { label: "Accueil", href: "/#accueil" },
+    { label: "Services", href: "/#services" },
+    { label: "Projets", href: "/#projets" },
+    { label: "À propos", href: "/#apropos" },
+    { label: "Contact", href: "/#contact" },
   ],
   // À renseigner : email, whatsapp (numéro réel au format international sans "+")
   contact: {},
@@ -78,13 +78,52 @@ export const site: SiteConfig = {
       description: "Recherche, wireframes, maquettes haute fidélité, prototypes et design systems.",
     },
   ],
-  // Projets de démonstration : à remplacer par les réalisations réelles.
+  // "notebooklm" est une réalisation réelle. Les autres restent des démonstrations à remplacer.
   projects: [
+    {
+      id: "notebooklm",
+      name: "Assistant documentaire IA en local",
+      kind: "Assistant IA conversationnel",
+      featured: true,
+      isDemo: false,
+      visual: "chat",
+      summary:
+        "Un assistant façon NotebookLM qui répond à partir de vos propres documents, sans que vos données ne quittent votre infrastructure.",
+      services: ["Backend & API", "UI/UX Design"],
+      technologies: ["Python", "LangChain", "Ollama (Mistral)", "ChromaDB", "HuggingFace", "Streamlit"],
+      caseStudyHref: "/projets/notebooklm",
+      caseStudy: {
+        tagline:
+          "Votre propre NotebookLM, hébergé en local : interrogez vos documents par chat, sans fuite de données vers le cloud.",
+        context:
+          "De nombreuses équipes veulent interroger leurs documents internes (contrats, rapports, notes) avec une IA conversationnelle, mais ne peuvent pas envoyer ces documents sensibles vers une API cloud externe pour des raisons de confidentialité ou de conformité.",
+        solution:
+          "Un assistant RAG (Retrieval-Augmented Generation) qui tourne entièrement en local : les documents sont découpés, vectorisés et indexés sur la machine, puis interrogés par un modèle de langage (Mistral via Ollama) exécuté lui aussi en local. Aucune donnée ne transite par un service tiers.",
+        features: [
+          "Import multi-format (PDF, Markdown, texte) directement depuis l'interface.",
+          "Découpage intelligent du texte avec chevauchement, pour préserver le sens de chaque extrait.",
+          "Recherche sémantique instantanée dans une base vectorielle, avec ou sans génération IA.",
+          "Réponses strictement ancrées dans les documents fournis : l'IA indique clairement quand l'information est absente, pour éviter les réponses inventées.",
+          "Citation systématique des sources (nom du fichier et page) pour chaque réponse.",
+          "Traitement 100 % local : embeddings et modèle de langage exécutés sans appel à une API externe.",
+        ],
+        highlights: [
+          "Confidentialité totale : les documents ne quittent jamais votre infrastructure, un atout pour les données sensibles ou soumises au RGPD.",
+          "Pas de coût d'API récurrent : le modèle tourne en local via Ollama, sans facturation à la requête.",
+          "Réponses vérifiables : chaque réponse est sourcée et limitée au contenu réellement fourni.",
+        ],
+        stack: [
+          { title: "IA & RAG", items: ["LangChain", "Ollama", "Mistral", "HuggingFace Embeddings", "ChromaDB"] },
+          { title: "INTERFACE", items: ["Python", "Streamlit"] },
+          { title: "DOCUMENTS", items: ["PyMuPDF"] },
+        ],
+        repoHref: "https://github.com/Mananjara1754/notebooklm",
+      },
+    },
     {
       id: "pilotage",
       name: "Tableau de bord de pilotage",
       kind: "Dashboard",
-      featured: true,
       isDemo: true,
       visual: "dashboard",
       summary: "Rendre lisibles des données dispersées pour aider une équipe à décider plus vite.",

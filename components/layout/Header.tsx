@@ -69,7 +69,7 @@ export function Header() {
           ))}
         </nav>
 
-        <a className="btn btn--accent header__cta" href="#contact">
+        <a className="btn btn--accent header__cta" href="/#contact">
           Discutons de votre projet
         </a>
 
@@ -98,7 +98,7 @@ export function Header() {
               {link.label}
             </a>
           ))}
-          <a className="btn btn--accent" href="#contact" onClick={() => close(false)}>
+          <a className="btn btn--accent" href="/#contact" onClick={() => close(false)}>
             Discutons de votre projet
           </a>
         </nav>

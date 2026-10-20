@@ -2,7 +2,7 @@ import { site } from "@/config/site";
 
 export function Logo() {
   return (
-    <a href="#accueil" className="logo" aria-label={`${site.companyName}, retour à l'accueil`}>
+    <a href="/#accueil" className="logo" aria-label={`${site.companyName}, retour à l'accueil`}>
       <span className="logo__mark" aria-hidden="true">
         <svg
           width="18"

@@ -1,11 +1,12 @@
-import { ArrowUpRight } from "lucide-react";
+import Link from "next/link";
 import { site } from "@/config/site";
 import type { Project } from "@/config/site.types";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { BrowserMockup, PhoneMockup } from "@/components/visuals/Mockups";
+import { CaseStudyLinkIcon } from "@/components/ui/CaseStudyLinkIcon";
+import { BrowserMockup, PhoneMockup, type BrowserVariant } from "@/components/visuals/Mockups";
 
-function ProjectVisual({ visual }: { visual: Project["visual"] }) {
+export function ProjectVisual({ visual }: { visual: Project["visual"] }) {
   if (visual === "mobile") {
     return (
       <div className="pvisual pvisual--phones">
@@ -14,10 +15,11 @@ function ProjectVisual({ visual }: { visual: Project["visual"] }) {
       </div>
     );
   }
+  const variant: BrowserVariant = visual === "shop" || visual === "chat" ? visual : "dashboard";
   return (
     <div className="pvisual">
       <div className="pvisual__window">
-        <BrowserMockup variant={visual === "shop" ? "shop" : "dashboard"} />
+        <BrowserMockup variant={variant} />
       </div>
     </div>
   );
@@ -43,9 +45,9 @@ function ProjectMeta({ project }: { project: Project }) {
 function CaseStudy({ project }: { project: Project }) {
   if (project.caseStudyHref) {
     return (
-      <a className="textlink" href={project.caseStudyHref}>
-        Découvrir le projet <ArrowUpRight size={15} aria-hidden="true" />
-      </a>
+      <Link className="textlink stretched-link" href={project.caseStudyHref}>
+        Découvrir le projet <CaseStudyLinkIcon />
+      </Link>
     );
   }
   return site.demoMode ? <p className="pmeta">Étude de cas à renseigner</p> : null;
