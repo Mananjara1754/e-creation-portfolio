@@ -1,4 +1,4 @@
-const items = ["WEB DEVELOPMENT", "BACKEND ENGINEERING", "MOBILE APPS", "UI/UX DESIGN"];
+const items = ["DÉVELOPPEMENT WEB", "BACKEND & API", "APPLICATIONS MOBILES", "UI/UX DESIGN"];
 
 export function ExpertiseBand() {
   return (

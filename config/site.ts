@@ -14,7 +14,7 @@ export const site: SiteConfig = {
     { label: "Accueil", href: "/#accueil" },
     { label: "Services", href: "/#services" },
     { label: "Projets", href: "/#projets" },
-    { label: "À propos", href: "/#apropos" },
+    { label: "Approche", href: "/#approche" },
     { label: "Contact", href: "/#contact" },
   ],
   // À renseigner : email, whatsapp (numéro réel au format international sans "+")
@@ -32,19 +32,18 @@ export const site: SiteConfig = {
   legal: {},
   principles: [
     {
-      number: "01",
-      title: "Conception centrée utilisateur",
-      description: "Chaque écran part d'un besoin réel et d'un parcours compréhensible.",
+      title: "Comprendre avant de construire",
+      description:
+        "On part du problème et de vos utilisateurs, pas d'une solution toute faite. On ne construit que ce qui sert.",
     },
     {
-      number: "02",
-      title: "Excellence technique",
-      description: "Un code structuré, testé et pensé pour durer et évoluer.",
+      title: "L'expérience autant que le code",
+      description:
+        "Une interface claire et un code structuré, pensé pour évoluer : l'un ne va pas sans l'autre.",
     },
     {
-      number: "03",
-      title: "Collaboration transparente",
-      description: "Vous savez où en est votre projet, à chaque étape.",
+      title: "Des échanges simples",
+      description: "Des points réguliers tout au long du projet : vous savez où il en est.",
     },
   ],
   services: [
@@ -124,8 +123,8 @@ export const site: SiteConfig = {
             title: "IA & RAG",
             items: ["LangChain", "Ollama", "Mistral", "HuggingFace Embeddings", "ChromaDB"],
           },
-          { title: "INTERFACE", items: ["Python", "Streamlit"] },
-          { title: "DOCUMENTS", items: ["PyMuPDF"] },
+          { title: "Interface", items: ["Python", "Streamlit"] },
+          { title: "Documents", items: ["PyMuPDF"] },
         ],
         repoHref: "https://github.com/Mananjara1754/notebooklm",
       },
@@ -161,12 +160,12 @@ export const site: SiteConfig = {
   ],
   // Technologies fournies par E-Creation. N'en ajouter aucune autre sans confirmation.
   stack: [
-    { title: "FRONTEND", items: ["React", "Next.js", "Angular"] },
-    { title: "MOBILE", items: ["Flutter", "React Native"] },
-    { title: "BACKEND", items: ["Node.js", "Java", ".NET"] },
-    { title: "DESIGN", items: ["Figma"] },
-    { title: "DONNÉES", items: ["PostgreSQL"] },
-    { title: "CLOUD", items: ["AWS", "GCP"] },
+    { title: "Frontend", items: ["React", "Next.js", "Angular"] },
+    { title: "Mobile", items: ["Flutter", "React Native"] },
+    { title: "Backend", items: ["Node.js", "Java", ".NET"] },
+    { title: "Design", items: ["Figma"] },
+    { title: "Données", items: ["PostgreSQL"] },
+    { title: "Cloud", items: ["AWS", "GCP"] },
   ],
   process: [
     {

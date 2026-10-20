@@ -37,7 +37,7 @@ Tout est dans `config/site.ts` (types dans `config/site.types.ts`) : nom, textes
 
 ## Sections de la page
 
-Dans l'ordre (`app/page.tsx`) : Hero, bandeau d'expertises, À propos, Services, Projets, Méthode, Stack, Pourquoi nous, appel à l'action, Contact. Header avec menu mobile accessible, footer.
+Dans l'ordre (`app/page.tsx`) : Hero, bandeau d'expertises, Services, Projets, Approche (étapes + principes), Stack, appel à l'action, Contact. Header avec menu mobile accessible, footer. Chaque projet avec `caseStudy` a sa page `/projets/[slug]`.
 
 Les visuels sont des maquettes dessinées en CSS (`components/visuals/Mockups.tsx`), il n'y a pas d'images.
 

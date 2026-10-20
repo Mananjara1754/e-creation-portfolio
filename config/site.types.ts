@@ -59,7 +59,6 @@ export interface ProcessStep {
 }
 
 export interface Principle {
-  number: string;
   title: string;
   description: string;
 }

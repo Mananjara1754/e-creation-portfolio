@@ -414,6 +414,19 @@ textarea {
     linear-gradient(var(--color-grid) 1px, transparent 1px),
     linear-gradient(90deg, var(--color-grid) 1px, transparent 1px);
   background-size: 64px 64px;
+  background-position: center top;
+}
+.hero {
+  position: relative;
+  isolation: isolate;
+}
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: radial-gradient(ellipse 80% 70% at 50% 35%, transparent 40%, var(--color-bg) 100%);
+  pointer-events: none;
 }
 .hero__inner {
   display: flex;
@@ -746,43 +759,6 @@ textarea {
   color: var(--color-accent);
 }
 
-/* ---------- À propos ---------- */
-
-.about {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 3.5rem 5rem;
-}
-.about__intro {
-  flex: 1 1 440px;
-  min-width: 0;
-}
-.about__list {
-  flex: 1 1 440px;
-  min-width: 0;
-  padding-top: 0.5rem;
-}
-.principles {
-  border-bottom: 1px solid var(--color-border);
-}
-.principle {
-  display: flex;
-  gap: 1.5rem;
-  padding-block: 1.75rem;
-  border-top: 1px solid var(--color-border);
-}
-.principle__num {
-  min-width: 28px;
-  padding-top: 0.3rem;
-  font-size: 0.8125rem;
-  font-weight: 600;
-  color: var(--color-accent);
-}
-.principle .muted {
-  margin-top: 0.5rem;
-  font-size: 0.95rem;
-}
-
 /* ---------- Services ---------- */
 
 .split-head {
@@ -1091,7 +1067,34 @@ textarea {
   }
 }
 
-/* ---------- Méthode ---------- */
+/* ---------- Approche ---------- */
+
+.approach__intro {
+  max-width: 760px;
+}
+.principles {
+  margin-top: 4rem;
+  padding: clamp(1.5rem, 4vw, 2.5rem);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  display: grid;
+  gap: 2rem 3rem;
+}
+.principle__title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  line-height: 1.35;
+}
+.principle .muted {
+  margin-top: 0.5rem;
+  font-size: 0.95rem;
+}
+@media (min-width: 900px) {
+  .principles {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
 
 .steps {
   margin-top: 4rem;
@@ -1176,36 +1179,6 @@ textarea {
   border-radius: var(--radius-sm);
   font-size: 0.875rem;
   font-weight: 500;
-}
-
-/* ---------- Pourquoi nous ---------- */
-
-.why {
-  margin-top: 3.5rem;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1.25rem;
-}
-.why__cell {
-  flex: 1 1 300px;
-  min-width: 0;
-  display: flex;
-}
-.why__card {
-  width: 100%;
-  padding: 2rem;
-}
-.why__card .muted {
-  margin-top: 0.875rem;
-  font-size: 0.95rem;
-}
-@media (min-width: 900px) {
-  .why__cell:nth-child(2) {
-    margin-top: 2rem;
-  }
-  .why__cell:nth-child(3) {
-    margin-top: 4rem;
-  }
 }
 
 /* ---------- CTA ---------- */
