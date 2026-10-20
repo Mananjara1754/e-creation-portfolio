@@ -5,6 +5,7 @@ Site vitrine one-page (Next.js 15 App Router, React 19, TypeScript). Tout en fra
 ## Commandes
 
 - `npm run dev` / `npm run build` (build = réseau requis pour Poppins)
+- Ne jamais lancer `npm run build` pendant que `npm run dev` tourne (même dossier `.next`, ça casse le serveur de dev) ; vérifier avec `typecheck` + `lint` à la place.
 - Avant de rendre la main : `npm run typecheck && npm run lint && npm run format` (pas de tests)
 - Déploiement : Vercel (build à chaque push, pas de CI GitHub). Node 22 (`engines: 22.x`, `.nvmrc`).
 - Prettier `printWidth: 100` ; ESLint flat config (`eslint.config.mjs`) : next/core-web-vitals, next/typescript, jsx-a11y.
