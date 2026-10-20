@@ -28,9 +28,3 @@ Site vitrine one-page (Next.js 15 App Router, React 19, TypeScript). Tout en fra
   - UI : responsive dès 320px, tokens de `globals.css` uniquement (pas de couleurs ou tailles en dur), cohérence avec les composants existants.
 - Si la structure change (nouvelle section, dépendance, variable d'env), mettre à jour ce fichier et le README.
 - Chantiers en cours / à venir : `TODO.md`. Cocher une tâche une fois faite, y ajouter les nouvelles.
-
-## Git
-
-- Ne jamais commiter ni pousser directement sur `main`.
-- Pour chaque changement : créer une branche (`feat/…`, `fix/…`, `docs/…`, `chore/…`), commiter, pousser, ouvrir une PR vers `main` avec `gh pr create`. Merge fait par l'utilisateur.
-- Vercel génère une URL de prévisualisation pour chaque PR.
