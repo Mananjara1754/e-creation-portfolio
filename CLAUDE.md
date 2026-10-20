@@ -5,6 +5,7 @@ Site vitrine one-page (Next.js 15 App Router, React 19, TypeScript). Tout en fra
 ## Commandes
 
 - `npm run dev` / `npm run build` (build = réseau requis pour Poppins)
+- Ne jamais lancer `npm run build` pendant que `npm run dev` tourne (même dossier `.next`, ça casse le serveur de dev) ; vérifier avec `typecheck` + `lint` à la place.
 - Avant de rendre la main : `npm run typecheck && npm run lint && npm run format` (pas de tests)
 - Déploiement : Vercel (build à chaque push, pas de CI GitHub). Node 22 (`engines: 22.x`, `.nvmrc`).
 - Prettier `printWidth: 100` ; ESLint flat config (`eslint.config.mjs`) : next/core-web-vitals, next/typescript, jsx-a11y.
@@ -27,3 +28,9 @@ Site vitrine one-page (Next.js 15 App Router, React 19, TypeScript). Tout en fra
   - UI : responsive dès 320px, tokens de `globals.css` uniquement (pas de couleurs ou tailles en dur), cohérence avec les composants existants.
 - Si la structure change (nouvelle section, dépendance, variable d'env), mettre à jour ce fichier et le README.
 - Chantiers en cours / à venir : `TODO.md`. Cocher une tâche une fois faite, y ajouter les nouvelles.
+
+## Git
+
+- Ne jamais commiter ni pousser directement sur `main`.
+- Pour chaque changement : créer une branche (`feat/…`, `fix/…`, `docs/…`, `chore/…`), commiter, pousser, ouvrir une PR vers `main` avec `gh pr create`. Merge fait par l'utilisateur.
+- Vercel génère une URL de prévisualisation pour chaque PR.
