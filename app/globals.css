@@ -175,7 +175,9 @@ textarea {
   font-weight: 600;
   line-height: 1.2;
   cursor: pointer;
-  transition: opacity var(--t-hover) var(--ease), border-color var(--t-hover) var(--ease),
+  transition:
+    opacity var(--t-hover) var(--ease),
+    border-color var(--t-hover) var(--ease),
     background-color var(--t-hover) var(--ease);
 }
 .btn--lg {
@@ -264,7 +266,9 @@ textarea {
 .js .reveal {
   opacity: 0;
   transform: translateY(12px);
-  transition: opacity var(--t-reveal) var(--ease), transform var(--t-reveal) var(--ease);
+  transition:
+    opacity var(--t-reveal) var(--ease),
+    transform var(--t-reveal) var(--ease);
 }
 .js .reveal.is-visible {
   opacity: 1;
@@ -379,7 +383,8 @@ textarea {
 .hero {
   border-bottom: 1px solid var(--color-border);
   background-color: var(--color-bg);
-  background-image: linear-gradient(var(--color-grid) 1px, transparent 1px),
+  background-image:
+    linear-gradient(var(--color-grid) 1px, transparent 1px),
     linear-gradient(90deg, var(--color-grid) 1px, transparent 1px);
   background-size: 64px 64px;
 }

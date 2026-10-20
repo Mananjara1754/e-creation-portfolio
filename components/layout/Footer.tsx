@@ -13,7 +13,9 @@ export function Footer() {
         <div className="footer__top">
           <div className="footer__brand">
             <Logo />
-            <p>{site.tagline ?? "Nous transformons vos idées en expériences digitales performantes."}</p>
+            <p>
+              {site.tagline ?? "Nous transformons vos idées en expériences digitales performantes."}
+            </p>
           </div>
 
           <nav className="footer__col" aria-label="Pied de page">

@@ -33,7 +33,8 @@ function validate(p: Payload) {
   const type = typeof p.type === "string" ? p.type : "";
   const message = typeof p.message === "string" ? p.message.trim() : "";
 
-  if (name.length < 2 || name.length > 100) errors.name = "Indiquez votre nom (2 à 100 caractères).";
+  if (name.length < 2 || name.length > 100)
+    errors.name = "Indiquez votre nom (2 à 100 caractères).";
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || email.length > 200)
     errors.email = "Indiquez une adresse e-mail valide.";
   if (!site.contactTypes.includes(type)) errors.type = "Choisissez un type de projet.";
@@ -56,7 +57,10 @@ export async function POST(request: Request) {
   try {
     body = (await request.json()) as Payload;
   } catch {
-    return NextResponse.json({ error: "invalid_json", message: "Requête invalide." }, { status: 400 });
+    return NextResponse.json(
+      { error: "invalid_json", message: "Requête invalide." },
+      { status: 400 },
+    );
   }
 
   // Honeypot : un humain ne remplit jamais ce champ. On répond comme si tout allait bien.

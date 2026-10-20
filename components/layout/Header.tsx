@@ -86,13 +86,7 @@ export function Header() {
         </button>
       </div>
 
-      <div
-        id="menu-mobile"
-        ref={menuRef}
-        className="mobile-menu"
-        data-open={open}
-        hidden={!open}
-      >
+      <div id="menu-mobile" ref={menuRef} className="mobile-menu" data-open={open} hidden={!open}>
         <nav className="container mobile-menu__inner" aria-label="Navigation mobile">
           {site.nav.map((link) => (
             <a

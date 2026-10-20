@@ -13,7 +13,11 @@ const icons: Record<ServiceIcon, LucideIcon> = {
 
 export function Services() {
   return (
-    <section id="services" className="section section--alt section--border" aria-labelledby="services-title">
+    <section
+      id="services"
+      className="section section--alt section--border"
+      aria-labelledby="services-title"
+    >
       <div className="container">
         <Reveal className="split-head">
           <div className="split-head__title">

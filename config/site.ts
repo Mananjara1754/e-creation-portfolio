@@ -34,8 +34,7 @@ export const site: SiteConfig = {
     {
       number: "01",
       title: "Conception centrée utilisateur",
-      description:
-        "Chaque écran part d'un besoin réel et d'un parcours compréhensible.",
+      description: "Chaque écran part d'un besoin réel et d'un parcours compréhensible.",
     },
     {
       number: "02",
@@ -62,24 +61,21 @@ export const site: SiteConfig = {
       number: "02",
       icon: "server",
       title: "Backend & API",
-      description:
-        "Architecture serveur, bases de données, API sécurisées et intégrations.",
+      description: "Architecture serveur, bases de données, API sécurisées et intégrations.",
     },
     {
       id: "mobile",
       number: "03",
       icon: "smartphone",
       title: "Développement Mobile",
-      description:
-        "Applications Android et iOS conçues pour une expérience fluide et cohérente.",
+      description: "Applications Android et iOS conçues pour une expérience fluide et cohérente.",
     },
     {
       id: "uiux",
       number: "04",
       icon: "pen-tool",
       title: "UI/UX Design",
-      description:
-        "Recherche, wireframes, maquettes haute fidélité, prototypes et design systems.",
+      description: "Recherche, wireframes, maquettes haute fidélité, prototypes et design systems.",
     },
   ],
   // Projets de démonstration : à remplacer par les réalisations réelles.
@@ -91,8 +87,7 @@ export const site: SiteConfig = {
       featured: true,
       isDemo: true,
       visual: "dashboard",
-      summary:
-        "Rendre lisibles des données dispersées pour aider une équipe à décider plus vite.",
+      summary: "Rendre lisibles des données dispersées pour aider une équipe à décider plus vite.",
       services: ["UI/UX Design", "Développement Web"],
     },
     {
@@ -111,8 +106,7 @@ export const site: SiteConfig = {
       kind: "Plateforme e-commerce",
       isDemo: true,
       visual: "shop",
-      summary:
-        "Un catalogue clair et un parcours d'achat fluide, avec un espace d'administration.",
+      summary: "Un catalogue clair et un parcours d'achat fluide, avec un espace d'administration.",
       services: ["UI/UX Design", "Web", "Backend & API"],
     },
   ],

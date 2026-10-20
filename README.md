@@ -5,14 +5,24 @@ Next.js 15 (App Router) + React 19 + TypeScript. Contenu en français, direction
 
 ## Lancer le projet
 
+Node 22 (`.nvmrc`, `nvm use` si nvm est installé ; `engines` dans `package.json` pour Vercel).
+
 ```bash
 npm install
-npm run dev        # http://localhost:3000
-npm run typecheck  # vérification TypeScript
+npm run dev           # http://localhost:3000
+npm run typecheck     # vérification TypeScript
+npm run lint          # ESLint (règles Next + accessibilité jsx-a11y)
+npm run format        # formate tout le code avec Prettier
 npm run build && npm start
 ```
 
 Poppins est chargée via `next/font/google` : le build nécessite un accès réseau à Google Fonts.
+
+Dans VS Code, installer les extensions Prettier et ESLint : le code est formaté et corrigé à l'enregistrement (`.vscode/settings.json`).
+
+## Déploiement
+
+Hébergé sur Vercel : chaque push sur `main` déclenche un build (TypeScript + ESLint inclus) puis la mise en production ; chaque branche / pull request obtient une URL de prévisualisation. Si le build échoue, la version en ligne reste inchangée.
 
 ## Où modifier le contenu
 
@@ -39,8 +49,8 @@ Les visuels sont des maquettes dessinées en CSS (`components/visuals/Mockups.ts
 
 Copier `.env.example` vers `.env.local` :
 
-| Variable | Rôle |
-| --- | --- |
+| Variable               | Rôle                                                      |
+| ---------------------- | --------------------------------------------------------- |
 | `NEXT_PUBLIC_SITE_URL` | URL publique, pour les métadonnées Open Graph (optionnel) |
 
 ## Structure

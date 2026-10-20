@@ -14,9 +14,11 @@ function validate(data: FormData): Errors {
   const message = String(data.get("message") ?? "").trim();
 
   if (name.length < 2) errors.name = "Indiquez votre nom.";
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) errors.email = "Indiquez une adresse e-mail valide.";
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))
+    errors.email = "Indiquez une adresse e-mail valide.";
   if (!site.contactTypes.includes(type)) errors.type = "Choisissez un type de projet.";
-  if (message.length < 10) errors.message = "Décrivez votre besoin en quelques mots (10 caractères minimum).";
+  if (message.length < 10)
+    errors.message = "Décrivez votre besoin en quelques mots (10 caractères minimum).";
   return errors;
 }
 
@@ -88,13 +90,37 @@ export function ContactForm() {
       <div className="form__pair">
         <div className="field">
           <label htmlFor="name">Nom</label>
-          <input id="name" name="name" type="text" autoComplete="name" placeholder="Votre nom" required {...field("name")} />
-          {errors.name && <p className="field__error" id="name-error">{errors.name}</p>}
+          <input
+            id="name"
+            name="name"
+            type="text"
+            autoComplete="name"
+            placeholder="Votre nom"
+            required
+            {...field("name")}
+          />
+          {errors.name && (
+            <p className="field__error" id="name-error">
+              {errors.name}
+            </p>
+          )}
         </div>
         <div className="field">
           <label htmlFor="email">Adresse e-mail</label>
-          <input id="email" name="email" type="email" autoComplete="email" placeholder="vous@exemple.com" required {...field("email")} />
-          {errors.email && <p className="field__error" id="email-error">{errors.email}</p>}
+          <input
+            id="email"
+            name="email"
+            type="email"
+            autoComplete="email"
+            placeholder="vous@exemple.com"
+            required
+            {...field("email")}
+          />
+          {errors.email && (
+            <p className="field__error" id="email-error">
+              {errors.email}
+            </p>
+          )}
         </div>
       </div>
 
@@ -107,13 +133,28 @@ export function ContactForm() {
             </option>
           ))}
         </select>
-        {errors.type && <p className="field__error" id="type-error">{errors.type}</p>}
+        {errors.type && (
+          <p className="field__error" id="type-error">
+            {errors.type}
+          </p>
+        )}
       </div>
 
       <div className="field">
         <label htmlFor="message">Message</label>
-        <textarea id="message" name="message" rows={5} placeholder="Parlez-nous de votre projet" required {...field("message")} />
-        {errors.message && <p className="field__error" id="message-error">{errors.message}</p>}
+        <textarea
+          id="message"
+          name="message"
+          rows={5}
+          placeholder="Parlez-nous de votre projet"
+          required
+          {...field("message")}
+        />
+        {errors.message && (
+          <p className="field__error" id="message-error">
+            {errors.message}
+          </p>
+        )}
       </div>
 
       {/* Honeypot anti-spam : invisible pour les humains. */}
@@ -128,7 +169,11 @@ export function ContactForm() {
         </p>
       )}
 
-      <button type="submit" className="btn btn--accent btn--lg form__submit" disabled={status === "loading"}>
+      <button
+        type="submit"
+        className="btn btn--accent btn--lg form__submit"
+        disabled={status === "loading"}
+      >
         {status === "loading" ? "Envoi en cours…" : "Envoyer le message"}
       </button>
     </form>
