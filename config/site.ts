@@ -90,7 +90,14 @@ export const site: SiteConfig = {
       summary:
         "Un assistant façon NotebookLM qui répond à partir de vos propres documents, sans que vos données ne quittent votre infrastructure.",
       services: ["Backend & API", "UI/UX Design"],
-      technologies: ["Python", "LangChain", "Ollama (Mistral)", "ChromaDB", "HuggingFace", "Streamlit"],
+      technologies: [
+        "Python",
+        "LangChain",
+        "Ollama (Mistral)",
+        "ChromaDB",
+        "HuggingFace",
+        "Streamlit",
+      ],
       caseStudyHref: "/projets/notebooklm",
       caseStudy: {
         tagline:
@@ -113,7 +120,10 @@ export const site: SiteConfig = {
           "Réponses vérifiables : chaque réponse est sourcée et limitée au contenu réellement fourni.",
         ],
         stack: [
-          { title: "IA & RAG", items: ["LangChain", "Ollama", "Mistral", "HuggingFace Embeddings", "ChromaDB"] },
+          {
+            title: "IA & RAG",
+            items: ["LangChain", "Ollama", "Mistral", "HuggingFace Embeddings", "ChromaDB"],
+          },
           { title: "INTERFACE", items: ["Python", "Streamlit"] },
           { title: "DOCUMENTS", items: ["PyMuPDF"] },
         ],

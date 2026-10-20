@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { site } from "@/config/site";
 import { Logo } from "@/components/ui/Logo";
 import { CurrentYear } from "@/components/ui/CurrentYear";
@@ -21,9 +22,9 @@ export function Footer() {
           <nav className="footer__col" aria-label="Pied de page">
             <span className="footer__title">NAVIGATION</span>
             {site.nav.map((link) => (
-              <a key={link.href} className="navlink" href={link.href}>
+              <Link key={link.href} className="navlink" href={link.href}>
                 {link.label}
-              </a>
+              </Link>
             ))}
           </nav>
 
