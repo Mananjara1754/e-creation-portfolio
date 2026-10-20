@@ -1,8 +1,9 @@
+import Link from "next/link";
 import { site } from "@/config/site";
 
 export function Logo() {
   return (
-    <a href="/#accueil" className="logo" aria-label={`${site.companyName}, retour à l'accueil`}>
+    <Link href="/#accueil" className="logo" aria-label={`${site.companyName}, retour à l'accueil`}>
       <span className="logo__mark" aria-hidden="true">
         <svg
           width="18"
@@ -18,6 +19,6 @@ export function Logo() {
         </svg>
       </span>
       <span>{site.companyName}</span>
-    </a>
+    </Link>
   );
 }

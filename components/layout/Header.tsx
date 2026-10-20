@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { site } from "@/config/site";
 import { Logo } from "@/components/ui/Logo";
@@ -63,15 +64,15 @@ export function Header() {
 
         <nav className="header__nav" aria-label="Navigation principale">
           {site.nav.map((link) => (
-            <a key={link.href} className="navlink" href={link.href}>
+            <Link key={link.href} className="navlink" href={link.href}>
               {link.label}
-            </a>
+            </Link>
           ))}
         </nav>
 
-        <a className="btn btn--accent header__cta" href="/#contact">
+        <Link className="btn btn--accent header__cta" href="/#contact">
           Discutons de votre projet
-        </a>
+        </Link>
 
         <button
           ref={buttonRef}
@@ -89,18 +90,18 @@ export function Header() {
       <div id="menu-mobile" ref={menuRef} className="mobile-menu" data-open={open} hidden={!open}>
         <nav className="container mobile-menu__inner" aria-label="Navigation mobile">
           {site.nav.map((link) => (
-            <a
+            <Link
               key={link.href}
               className="mobile-menu__link"
               href={link.href}
               onClick={() => close(false)}
             >
               {link.label}
-            </a>
+            </Link>
           ))}
-          <a className="btn btn--accent" href="/#contact" onClick={() => close(false)}>
+          <Link className="btn btn--accent" href="/#contact" onClick={() => close(false)}>
             Discutons de votre projet
-          </a>
+          </Link>
         </nav>
       </div>
     </header>
