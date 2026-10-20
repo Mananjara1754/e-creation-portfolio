@@ -1,6 +1,5 @@
 import { site } from "@/config/site";
 import { Reveal } from "@/components/ui/Reveal";
-import { SectionHeading } from "@/components/ui/SectionHeading";
 
 export function Stack() {
   if (site.stack.length === 0) return null;
@@ -9,13 +8,10 @@ export function Stack() {
     <section className="section section--border" aria-labelledby="stack-title">
       <div className="container stack">
         <Reveal className="stack__intro">
-          <SectionHeading label="NOTRE STACK" id="stack-title">
-            Les bons outils pour les bons besoins.
-          </SectionHeading>
-          <p className="muted">
-            Technologies déclarées par {site.companyName}. D&apos;autres pourront être ajoutées au
-            fil des projets.
-          </p>
+          <h2 className="h2" id="stack-title">
+            Technologies
+          </h2>
+          <p className="muted">Les outils avec lesquels nous travaillons.</p>
         </Reveal>
 
         <Reveal className="stack__groups" delay={100}>

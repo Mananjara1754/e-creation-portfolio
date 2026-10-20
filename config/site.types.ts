@@ -5,14 +5,10 @@ export interface NavLink {
   href: string;
 }
 
-export type ServiceIcon = "monitor" | "server" | "smartphone" | "pen-tool";
-
 export interface Service {
   id: string;
-  number: string;
   title: string;
   description: string;
-  icon: ServiceIcon;
 }
 
 export type ProjectVisual = "dashboard" | "mobile" | "shop" | "chat";
@@ -59,7 +55,6 @@ export interface ProcessStep {
 }
 
 export interface Principle {
-  number: string;
   title: string;
   description: string;
 }

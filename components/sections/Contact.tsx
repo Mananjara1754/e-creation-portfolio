@@ -1,6 +1,5 @@
 import { site } from "@/config/site";
 import { Reveal } from "@/components/ui/Reveal";
-import { SectionHeading } from "@/components/ui/SectionHeading";
 import { ContactForm } from "@/components/sections/ContactForm";
 
 function Row({ label, children }: { label: string; children: React.ReactNode }) {
@@ -20,9 +19,9 @@ export function Contact() {
     <section id="contact" className="section section--border" aria-labelledby="contact-title">
       <div className="container contact">
         <Reveal className="contact__intro">
-          <SectionHeading label="CONTACT" id="contact-title">
+          <h2 className="h2" id="contact-title">
             Parlons de votre projet.
-          </SectionHeading>
+          </h2>
           <p className="muted">
             Décrivez votre besoin en quelques lignes. Nous revenons vers vous pour en discuter.
           </p>
