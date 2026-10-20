@@ -1,0 +1,27 @@
+# CLAUDE.md — E-Creation Portfolio
+
+Site vitrine one-page (Next.js 15 App Router, React 19, TypeScript). Tout en français. CSS maison, pas de Tailwind ; icônes `lucide-react`.
+
+## Commandes
+
+- `npm run dev` / `npm run build` (build = réseau requis pour Poppins)
+- `npm run typecheck` : seule vérification (pas de lint ni de tests)
+
+## Où sont les choses
+
+- Contenu : `config/site.ts` (types : `config/site.types.ts`). Les composants lisent `site` directement.
+- Sections : `components/sections/*`, ordre dans `app/page.tsx`.
+- Styles : `app/globals.css` (tokens dans `:root`, classes BEM, un bloc commenté par section).
+- Formulaire : `components/sections/ContactForm.tsx` + `app/api/contact/route.ts` (envoi pas encore mis en place, voir `TODO.md`). Garder la validation client/serveur cohérente.
+
+## Règles
+
+- Ne rien inventer : coordonnées, réseaux, liens légaux, clients, technos. `stack` = uniquement les technos confirmées par E-Creation.
+- `demoMode: true` affiche des « à renseigner » ; les projets actuels sont des démos (`isDemo`).
+- `caseStudyHref` seulement si la page existe.
+- Chaque changement doit rester SEO, UX et UI friendly :
+  - SEO : un seul `h1` (Hero), hiérarchie h2/h3, metadata dans `app/layout.tsx`, textes réels et descriptifs.
+  - UX/accessibilité : navigation clavier, focus visible, `aria-*` corrects, contrastes suffisants, `prefers-reduced-motion`, contenu visible sans JS.
+  - UI : responsive dès 320px, tokens de `globals.css` uniquement (pas de couleurs ou tailles en dur), cohérence avec les composants existants.
+- Si la structure change (nouvelle section, dépendance, variable d'env), mettre à jour ce fichier et le README.
+- Chantiers en cours / à venir : `TODO.md`. Cocher une tâche une fois faite, y ajouter les nouvelles.
