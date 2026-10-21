@@ -6,7 +6,7 @@ Cocher au fur et à mesure. Ajouter ici tout nouveau chantier.
 
 - [ ] Renseigner l'e-mail et le WhatsApp réels (`contact`)
 - [ ] Ajouter les réseaux sociaux (`socials`)
-- [ ] Remplacer les projets de démo par de vraies réalisations (technologies, `caseStudyHref` si page)
+- [x] Remplacer les projets de démo par de vraies réalisations (technologies, `caseStudyHref` si page)
 - [ ] Passer `demoMode` à `false` avant la mise en ligne
 
 ## SEO

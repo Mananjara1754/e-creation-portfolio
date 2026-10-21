@@ -77,7 +77,6 @@ export const site: SiteConfig = {
       description: "Recherche, wireframes, maquettes haute fidélité, prototypes et design systems.",
     },
   ],
-  // "notebooklm" est une réalisation réelle. Les autres restent des démonstrations à remplacer.
   projects: [
     {
       id: "notebooklm",
@@ -130,32 +129,155 @@ export const site: SiteConfig = {
       },
     },
     {
-      id: "pilotage",
-      name: "Tableau de bord de pilotage",
-      kind: "Dashboard",
-      isDemo: true,
-      visual: "dashboard",
-      summary: "Rendre lisibles des données dispersées pour aider une équipe à décider plus vite.",
-      services: ["UI/UX Design", "Développement Web"],
-    },
-    {
-      id: "suivi",
-      name: "Application de suivi au quotidien",
-      kind: "Application mobile",
-      isDemo: true,
-      visual: "mobile",
-      summary:
-        "Un parcours mobile simple pour suivre des tâches et des échanges depuis son téléphone.",
-      services: ["UI/UX Design", "Développement Mobile"],
-    },
-    {
-      id: "boutique",
-      name: "Boutique en ligne sur mesure",
-      kind: "Plateforme e-commerce",
-      isDemo: true,
+      id: "marketplace-mean",
+      name: "Marketplace multi-boutiques",
+      kind: "Marketplace e-commerce",
+      isDemo: false,
       visual: "shop",
-      summary: "Un catalogue clair et un parcours d'achat fluide, avec un espace d'administration.",
-      services: ["UI/UX Design", "Web", "Backend & API"],
+      summary:
+        "Une galerie marchande qui existe aussi en ligne : chaque commerçant loue son emplacement, vend en boutique et sur la plateforme, dans un seul back-office.",
+      services: ["Backend & API", "Développement Web", "UI/UX Design"],
+      technologies: ["Angular", "Node.js", "Express", "MongoDB", "JWT", "Cloudinary"],
+      caseStudyHref: "/projets/marketplace-mean",
+      caseStudy: {
+        tagline:
+          "La galerie marchande qui vit aussi en ligne : vitrine web, gestion des loyers et des commandes dans un seul back-office.",
+        context:
+          "Un centre commercial avec des dizaines de boutiques indépendantes a besoin d'un seul système pour gérer les emplacements loués, vendre en ligne, encaisser les paiements et garder le contact avec les clients, sans multiplier les outils déconnectés entre eux.",
+        solution:
+          "Une plateforme MEAN (MongoDB, Express, Angular, Node.js) avec deux interfaces : une boutique en ligne pour les clients (recherche, panier, favoris, commandes, messagerie) et un back-office pour les commerçants et l'administration (produits, promotions, loyers, statistiques, paiements). Chaque boutique est rattachée à un emplacement physique (étage, zone) et paie un loyer suivi directement dans la plateforme.",
+        features: [
+          "Vitrine publique avec recherche, filtres et fiches boutiques/produits.",
+          "Panier, favoris et suivi de commandes pour les clients.",
+          "Messagerie intégrée entre acheteurs et commerçants, avec notifications.",
+          "Back-office commerçant : produits, catégories, promotions, statistiques de vente.",
+          "Gestion des loyers des emplacements et des paiements, avec facturation PDF.",
+          "Authentification JWT, upload d'images via Cloudinary, API documentée (Swagger).",
+        ],
+        highlights: [
+          "Un seul système pour vendre en boutique physique et en ligne, sans ressaisie.",
+          "Les commerçants suivent leurs ventes et leur loyer au même endroit.",
+          "Architecture modulaire (API Node.js + deux fronts Angular) qui s'adapte à d'autres types de commerces.",
+        ],
+        stack: [
+          { title: "Backend", items: ["Node.js", "Express", "MongoDB", "Mongoose", "JWT"] },
+          { title: "Frontend", items: ["Angular", "Tailwind CSS", "Chart.js"] },
+          { title: "Services", items: ["Cloudinary", "PDFKit", "Swagger"] },
+        ],
+        repoHref: "https://github.com/Mananjara1754/m1p13mean-Hasinjara-Mananjara",
+      },
+    },
+    {
+      id: "btp-construction",
+      name: "Suivi de chantiers et devis client",
+      kind: "Plateforme de gestion BTP",
+      isDemo: false,
+      visual: "dashboard",
+      summary:
+        "Du devis en ligne au suivi de chantier : les clients avancent dans leur projet de construction, l'entreprise pilote tout depuis un seul back-office.",
+      services: ["Backend & API", "Développement Web"],
+      technologies: ["PHP", "CodeIgniter", "MySQL", "Bootstrap"],
+      caseStudyHref: "/projets/btp-construction",
+      caseStudy: {
+        tagline:
+          "Du devis en ligne au suivi de chantier : vos clients avancent dans leur projet, vous pilotez tout depuis un seul back-office.",
+        context:
+          "Une entreprise de construction gère en parallèle des devis, des paiements échelonnés et l'avancement de chantiers pour plusieurs clients, souvent avec des tableurs et des échanges téléphoniques qui se perdent facilement.",
+        solution:
+          "Une plateforme web (PHP / CodeIgniter / MySQL) avec un espace client et un espace administrateur. Le client choisit un modèle de maison, un niveau de finition et un lieu pour générer un devis, suit ses paiements et l'avancement de son chantier. L'administrateur pilote les devis, les clients, les employés, les paiements et les travaux depuis un tableau de bord, avec import/export CSV des données.",
+        features: [
+          "Demande de devis en ligne : modèle de maison, niveau de finition, lieu du chantier.",
+          "Export du devis en PDF pour le client.",
+          "Suivi des paiements échelonnés par devis, avec historique des montants versés.",
+          "Calendrier des rendez-vous et de l'avancement des chantiers.",
+          "Back-office administrateur : clients, devis, employés, paiements, chantiers, statistiques.",
+          "Import/export CSV des données.",
+        ],
+        highlights: [
+          "Toute l'activité (devis, paiements, avancement) centralisée dans un seul outil, fini les tableurs épars.",
+          "Le client suit son projet en autonomie, sans appeler l'entreprise à chaque étape.",
+          "Une base solide (CodeIgniter/MySQL) facile à étendre à d'autres besoins métier.",
+        ],
+        stack: [
+          { title: "Backend", items: ["PHP", "CodeIgniter", "MySQL"] },
+          { title: "Frontend", items: ["Bootstrap", "Chart.js", "FullCalendar"] },
+        ],
+        repoHref: "https://github.com/Mananjara1754/BTP-Construction",
+      },
+    },
+    {
+      id: "rage-room-pitch",
+      name: "Business plan interactif — Rage Room Madagascar",
+      kind: "Site vitrine interactif",
+      isDemo: false,
+      visual: "dashboard",
+      summary:
+        "Un business plan transformé en expérience web interactive : étude de marché, finances et pitch dans un seul site, pensé pour convaincre un jury.",
+      services: ["UI/UX Design", "Développement Web"],
+      technologies: ["HTML5", "CSS3", "JavaScript"],
+      caseStudyHref: "/projets/rage-room-pitch",
+      caseStudy: {
+        tagline:
+          "Un business plan qui se feuillette comme un site, pas comme un PDF : marché, finances et pitch en une seule expérience.",
+        context:
+          "Un dossier de projet entrepreneurial (étude de marché, prévisionnel financier, organisation, risques) est en général présenté sous forme de PDF ou de diaporama statique, difficile à parcourir et peu mémorable pour un jury ou des investisseurs.",
+        solution:
+          "Un site vitrine en une page, en HTML/CSS/JavaScript pur et sans framework, qui transforme chaque partie du dossier (concept, marché, finances, équipe, risques, go-to-market) en section interactive : animations au défilement, tableaux financiers (VAN, TRI, indice de profitabilité), visualisation des segments de marché, et une mini-interaction ludique pour ancrer le concept dans la mémoire du lecteur.",
+        features: [
+          "Navigation par onglets entre les six sections du dossier (concept, marché, finances, équipe, risques, marketing).",
+          "Tableaux financiers détaillés : compte de résultat sur 5 ans, calcul de VAN actualisée, TRI, indice de profitabilité.",
+          "Visualisation des segments de marché et de la grille tarifaire.",
+          "Matrice des risques avec niveau de criticité et plan de mitigation pour chacun.",
+          "Mini-interaction ludique pour illustrer le concept et capter l'attention.",
+          "Site 100 % autonome, sans dépendance ni framework.",
+        ],
+        highlights: [
+          "Un dossier de projet qui se lit comme un site, plus engageant qu'un PDF ou un diaporama.",
+          "Les chiffres clés (VAN, TRI, rentabilité) sont mis en avant visuellement, pas noyés dans un tableau.",
+          "Un format réutilisable pour présenter n'importe quel pitch ou dossier d'investissement.",
+        ],
+        stack: [{ title: "Frontend", items: ["HTML5", "CSS3", "JavaScript"] }],
+        repoHref: "https://github.com/Mananjara1754/rage_room_madagascar",
+      },
+    },
+    {
+      id: "badge-generator",
+      name: "Import CSV/JSON avec mapping dynamique",
+      kind: "API de gestion de données",
+      isDemo: false,
+      visual: "dashboard",
+      summary:
+        "Importez une liste de participants (CSV ou JSON) et générez leurs badges nominatifs par évènement, en quelques secondes.",
+      services: ["Backend & API"],
+      technologies: ["Java", "Spring Boot", "H2", "Docker"],
+      caseStudyHref: "/projets/badge-generator",
+      caseStudy: {
+        tagline:
+          "Un fichier de participants, un mapping de colonnes, et des badges prêts à imprimer : fini la ressaisie manuelle.",
+        context:
+          "Préparer les badges d'un évènement à partir d'une liste de participants (export RH, inscription en ligne...) demande normalement de reformater chaque fichier à la main avant de pouvoir les utiliser.",
+        solution:
+          "Une API Spring Boot qui importe un fichier CSV ou JSON de participants, permet de renommer dynamiquement les colonnes (nom, e-mail, photo...) sans toucher au code, puis enregistre chaque participant rattaché à un évènement (« projet »). Les données sont stockées dans une base H2 embarquée, prêtes à être exploitées pour générer les badges.",
+        features: [
+          "Import de participants depuis un fichier CSV ou JSON, en une seule requête.",
+          "Mapping dynamique des colonnes (ex. `work_email` → `Email`) sans toucher au code.",
+          "Participants regroupés par évènement, avec photo encodée en base64.",
+          "Insertion transactionnelle : si une ligne échoue, rien n'est enregistré à moitié.",
+          "Pagination des listes de participants pour les gros volumes.",
+          "Conteneurisé avec Docker pour un déploiement en quelques minutes.",
+        ],
+        highlights: [
+          "Remplace la ressaisie manuelle d'une liste de participants par un simple import de fichier.",
+          "S'adapte aux colonnes de n'importe quel export grâce au mapping dynamique.",
+          "Prêt à déployer en quelques minutes via Docker.",
+        ],
+        stack: [
+          { title: "Backend", items: ["Java", "Spring Boot", "Spring Data JPA"] },
+          { title: "Données", items: ["H2", "Apache Commons CSV", "Jackson"] },
+          { title: "Déploiement", items: ["Docker"] },
+        ],
+        repoHref: "https://github.com/Mananjara1754/SpringH2Csv",
+      },
     },
   ],
   // Technologies fournies par E-Creation. N'en ajouter aucune autre sans confirmation.
