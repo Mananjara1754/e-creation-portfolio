@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Poppins } from "next/font/google";
 import { site } from "@/config/site";
+import { baseOpenGraph, defaultTitle, siteUrl } from "@/lib/seo";
 import "./globals.css";
 
 const poppins = Poppins({
@@ -10,19 +11,15 @@ const poppins = Poppins({
   variable: "--font-poppins",
 });
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL;
-
 export const metadata: Metadata = {
-  ...(siteUrl ? { metadataBase: new URL(siteUrl) } : {}),
-  title: `${site.companyName} — Agence de développement digital`,
+  metadataBase: new URL(siteUrl),
+  title: { default: defaultTitle, template: `%s | ${site.companyName}` },
   description: site.description,
-  openGraph: {
-    title: `${site.companyName} — Agence de développement digital`,
-    description: site.description,
-    type: "website",
-    locale: "fr_FR",
-    siteName: site.companyName,
-  },
+  applicationName: site.companyName,
+  openGraph: { ...baseOpenGraph, title: defaultTitle, description: site.description },
+  twitter: { card: "summary_large_image" },
+  robots: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 },
+  formatDetection: { telephone: false, email: false, address: false },
 };
 
 export const viewport: Viewport = {

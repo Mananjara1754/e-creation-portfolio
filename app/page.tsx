@@ -1,3 +1,7 @@
+import type { Metadata } from "next";
+import { site } from "@/config/site";
+import { absoluteUrl, baseOpenGraph, defaultTitle, siteUrl } from "@/lib/seo";
+import { JsonLd } from "@/components/seo/JsonLd";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { Hero } from "@/components/sections/Hero";
@@ -9,9 +13,42 @@ import { Stack } from "@/components/sections/Stack";
 import { FinalCta } from "@/components/sections/FinalCta";
 import { Contact } from "@/components/sections/Contact";
 
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+  openGraph: { ...baseOpenGraph, title: defaultTitle, description: site.description, url: "/" },
+};
+
+// Uniquement des informations confirmées (pas d'adresse ni de contact tant qu'ils sont vides).
+const organizationId = absoluteUrl("/#organisation");
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": organizationId,
+      name: site.companyName,
+      url: siteUrl,
+      logo: absoluteUrl("/apple-icon"),
+      description: site.description,
+      knowsAbout: site.services.map((s) => s.title),
+      ...(site.contact.email ? { email: site.contact.email } : {}),
+      ...(site.socials.length > 0 ? { sameAs: site.socials.map((s) => s.href) } : {}),
+    },
+    {
+      "@type": "WebSite",
+      "@id": absoluteUrl("/#site"),
+      name: site.companyName,
+      url: siteUrl,
+      inLanguage: site.locale,
+      publisher: { "@id": organizationId },
+    },
+  ],
+};
+
 export default function HomePage() {
   return (
     <>
+      <JsonLd data={structuredData} />
       <a className="skip-link" href="#contenu">
         Aller au contenu
       </a>

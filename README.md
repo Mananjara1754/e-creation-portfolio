@@ -41,6 +41,13 @@ Dans l'ordre (`app/page.tsx`) : Hero, bandeau d'expertises, Services, Projets, A
 
 Les visuels sont des maquettes dessinées en CSS (`components/visuals/Mockups.tsx`), il n'y a pas d'images.
 
+## SEO
+
+- Titre, description, Open Graph : `app/layout.tsx` (valeurs par défaut, gabarit `%s | E-Creation`) et chaque page (`canonical`, `openGraph.url`).
+- `/sitemap.xml` liste l'accueil et chaque étude de cas ; `/robots.txt` bloque `/api/`.
+- Données structurées : `Organization` + `WebSite` sur l'accueil, fil d'Ariane + projet sur chaque étude de cas. Uniquement des informations confirmées : e-mail et réseaux y sont ajoutés automatiquement une fois renseignés dans `config/site.ts`.
+- Les images générées (icônes, Open Graph) n'ont pas accès au CSS : leurs couleurs sont dans `lib/seo.ts`, à garder synchronisées avec `app/globals.css`.
+
 ## Formulaire de contact
 
 À mettre en place : l'envoi des messages n'est pas encore configuré.
@@ -49,20 +56,28 @@ Les visuels sont des maquettes dessinées en CSS (`components/visuals/Mockups.ts
 
 Copier `.env.example` vers `.env.local` :
 
-| Variable               | Rôle                                                      |
-| ---------------------- | --------------------------------------------------------- |
-| `NEXT_PUBLIC_SITE_URL` | URL publique, pour les métadonnées Open Graph (optionnel) |
+| Variable               | Rôle                                                                                                                 |
+| ---------------------- | -------------------------------------------------------------------------------------------------------------------- |
+| `NEXT_PUBLIC_SITE_URL` | URL publique (canonicals, sitemap, Open Graph, JSON-LD). Sans valeur : domaine de production Vercel, sinon localhost |
 
 ## Structure
 
 ```text
 app/
   layout.tsx, page.tsx, globals.css
+  not-found.tsx            page 404
+  robots.ts, sitemap.ts    /robots.txt et /sitemap.xml (générés depuis config/site.ts)
+  icon.tsx, apple-icon.tsx favicon et icône Apple (générées, aussi logo du JSON-LD)
+  opengraph-image.tsx      image de partage 1200×630 (une par étude de cas dans projets/[slug]/)
   api/contact/route.ts     envoi du formulaire
 components/
   layout/                  Header, Footer
   sections/                une section de la page par fichier
   ui/                      Logo, SectionHeading, Reveal, CurrentYear
+  seo/                     JsonLd (données structurées schema.org)
+lib/
+  seo.ts                   URL du site, titre par défaut, Open Graph commun, couleurs des images
+  og.tsx                   gabarit des images Open Graph et du logo
   visuals/                 maquettes CSS
 config/
   site.ts                  données du site
