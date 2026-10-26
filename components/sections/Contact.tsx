@@ -7,7 +7,7 @@ function Row({ label, children }: { label: string; children: React.ReactNode }) 
   return (
     <div className="contact__row">
       <span className="contact__label">{label}</span>
-      <span>{children}</span>
+      <span className="contact__value">{children}</span>
     </div>
   );
 }
@@ -49,7 +49,7 @@ export function Contact() {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  Nous écrire sur WhatsApp
+                  Nous écrire sur WhatsApp <span className="sr-only">(nouvel onglet)</span>
                 </a>
               </Row>
             ) : (
@@ -65,7 +65,7 @@ export function Contact() {
                   <span key={s.href}>
                     {i > 0 && " · "}
                     <a className="navlink" href={s.href} target="_blank" rel="noopener noreferrer">
-                      {s.label}
+                      {s.label} <span className="sr-only">(nouvel onglet)</span>
                     </a>
                   </span>
                 ))}

@@ -43,6 +43,8 @@ export function Reveal({ children, className = "", delay = 0 }: RevealProps) {
       ref={ref}
       className={`reveal${visible ? " is-visible" : ""} ${className}`.trim()}
       style={delay ? { transitionDelay: `${delay}ms` } : undefined}
+      // Au clavier, le focus peut arriver avant le défilement : afficher tout de suite.
+      onFocus={() => setVisible(true)}
     >
       {children}
     </div>

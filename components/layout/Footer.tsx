@@ -43,7 +43,7 @@ export function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  WhatsApp
+                  WhatsApp <span className="sr-only">(nouvel onglet)</span>
                 </a>
               )}
               {site.socials.map((s) => (
@@ -54,7 +54,7 @@ export function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  {s.label}
+                  {s.label} <span className="sr-only">(nouvel onglet)</span>
                 </a>
               ))}
             </div>

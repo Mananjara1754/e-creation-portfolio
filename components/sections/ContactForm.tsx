@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
+import { useEffect, useRef, useState, type FormEvent } from "react";
 import { site } from "@/config/site";
 
 type Status = "idle" | "loading" | "success" | "error";
@@ -26,6 +26,17 @@ export function ContactForm() {
   const [status, setStatus] = useState<Status>("idle");
   const [errors, setErrors] = useState<Errors>({});
   const [feedback, setFeedback] = useState<string>("");
+  const doneRef = useRef<HTMLDivElement>(null);
+  const restarted = useRef(false);
+
+  // Le bouton cliqué disparaît à chaque changement d'écran : on replace le focus pour le clavier.
+  useEffect(() => {
+    if (status === "success") doneRef.current?.focus();
+    if (status === "idle" && restarted.current) {
+      restarted.current = false;
+      document.getElementById("name")?.focus();
+    }
+  }, [status]);
 
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -70,10 +81,17 @@ export function ContactForm() {
 
   if (status === "success") {
     return (
-      <div className="form form--done" role="status">
+      <div className="form form--done" role="status" ref={doneRef} tabIndex={-1}>
         <h3 className="h3">Message envoyé</h3>
         <p className="muted">Merci pour votre message. Nous revenons vers vous rapidement.</p>
-        <button type="button" className="btn btn--ghost" onClick={() => setStatus("idle")}>
+        <button
+          type="button"
+          className="btn btn--ghost"
+          onClick={() => {
+            restarted.current = true;
+            setStatus("idle");
+          }}
+        >
           Envoyer un autre message
         </button>
       </div>
@@ -124,21 +142,23 @@ export function ContactForm() {
         </div>
       </div>
 
-      <div className="field">
-        <label htmlFor="type">Type de projet</label>
-        <select id="type" name="type" defaultValue={site.contactTypes[0]} {...field("type")}>
-          {site.contactTypes.map((t) => (
-            <option key={t} value={t}>
-              {t}
-            </option>
+      {/* Boutons radio plutôt qu'un select : les libellés passent à la ligne au lieu d'être tronqués. */}
+      <fieldset className="field" aria-describedby={errors.type ? "type-error" : undefined}>
+        <legend className="field__legend">Type de projet</legend>
+        <div className="choices">
+          {site.contactTypes.map((t, i) => (
+            <label key={t} className="choice">
+              <input type="radio" name="type" value={t} defaultChecked={i === 0} />
+              <span>{t}</span>
+            </label>
           ))}
-        </select>
+        </div>
         {errors.type && (
           <p className="field__error" id="type-error">
             {errors.type}
           </p>
         )}
-      </div>
+      </fieldset>
 
       <div className="field">
         <label htmlFor="message">Message</label>
