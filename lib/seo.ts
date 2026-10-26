@@ -3,14 +3,13 @@ import { site } from "@/config/site";
 
 /**
  * URL publique du site, base des canonicals, du sitemap et des données structurées.
- * Priorité : NEXT_PUBLIC_SITE_URL, puis le domaine de production fourni par Vercel, puis localhost.
+ * Obligatoire en production : sans elle, Google recevrait des URL en localhost.
  */
-export const siteUrl = (
-  process.env.NEXT_PUBLIC_SITE_URL ||
-  (process.env.VERCEL_PROJECT_PRODUCTION_URL
-    ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
-    : "http://localhost:3000")
-).replace(/\/$/, "");
+const envSiteUrl = process.env.NEXT_PUBLIC_SITE_URL;
+if (!envSiteUrl && process.env.NODE_ENV === "production") {
+  throw new Error("NEXT_PUBLIC_SITE_URL doit être défini pour le build de production.");
+}
+export const siteUrl = (envSiteUrl || "http://localhost:3000").replace(/\/$/, "");
 
 export function absoluteUrl(path = "/") {
   return new URL(path, `${siteUrl}/`).toString();

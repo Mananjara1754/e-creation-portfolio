@@ -11,7 +11,7 @@ Cocher au fur et à mesure. Ajouter ici tout nouveau chantier.
 
 ## SEO
 
-- [ ] Définir l'URL réelle (`NEXT_PUBLIC_SITE_URL`)
+- [ ] Définir l'URL réelle (`NEXT_PUBLIC_SITE_URL`, obligatoire pour le build de production)
 - [x] `app/robots.ts` (bloquer `/api/`, lien vers le sitemap)
 - [x] `app/sitemap.ts` (lister chaque page)
 - [x] URL canonique dans les metadata (`app/layout.tsx`)

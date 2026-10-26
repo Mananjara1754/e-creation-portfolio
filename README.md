@@ -56,9 +56,9 @@ Les visuels sont des maquettes dessinées en CSS (`components/visuals/Mockups.ts
 
 Copier `.env.example` vers `.env.local` :
 
-| Variable               | Rôle                                                                                                                 |
-| ---------------------- | -------------------------------------------------------------------------------------------------------------------- |
-| `NEXT_PUBLIC_SITE_URL` | URL publique (canonicals, sitemap, Open Graph, JSON-LD). Sans valeur : domaine de production Vercel, sinon localhost |
+| Variable               | Rôle                                                                                                                              |
+| ---------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| `NEXT_PUBLIC_SITE_URL` | URL publique (canonicals, sitemap, Open Graph, JSON-LD). **Obligatoire en production** (le build échoue sinon) ; localhost en dev |
 
 ## Structure
 
