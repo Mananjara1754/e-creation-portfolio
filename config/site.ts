@@ -30,7 +30,7 @@ export const site: SiteConfig = {
   // À renseigner : { label: "LinkedIn", href: "https://..." }
   socials: [],
   // À renseigner uniquement si les pages existent
-  legal: {},
+  legal: { privacyHref: "/confidentialite" },
   principles: [
     {
       title: "Comprendre avant de construire",

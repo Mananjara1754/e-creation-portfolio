@@ -991,6 +991,32 @@ html:not(.js) .header__toggle {
   font-weight: 500;
 }
 
+/* ---------- Pages légales ---------- */
+
+.legal {
+  max-width: 760px;
+}
+.legal .h3 {
+  margin-top: 2.5rem;
+}
+.legal p,
+.legal__list {
+  margin-top: 0.875rem;
+  color: var(--color-text-muted);
+}
+.legal__list {
+  padding-left: 1.25rem;
+  list-style: disc;
+}
+.legal__list li + li {
+  margin-top: 0.375rem;
+}
+.legal a {
+  color: var(--color-accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
 /* ---------- Étude de cas ---------- */
 
 .case-head {
@@ -1405,6 +1431,13 @@ fieldset.field {
   border-radius: var(--radius-sm);
   font-size: 0.875rem;
   color: var(--color-error-text);
+}
+.form__note {
+  font-size: 0.8125rem;
+  color: var(--color-text-muted);
+}
+.form__note .textlink {
+  font-size: inherit;
 }
 .form__submit {
   align-self: flex-start;

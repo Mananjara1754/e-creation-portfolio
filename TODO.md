@@ -27,8 +27,9 @@ Cocher au fur et à mesure. Ajouter ici tout nouveau chantier.
 ## Légal
 
 - [ ] Page Mentions légales (`legal.legalHref`)
-- [ ] Page Politique de confidentialité (`legal.privacyHref`), incluant le formulaire de contact
-- [ ] Ajouter ces pages au sitemap
+- [x] Page Politique de confidentialité (`/confidentialite`), liée au formulaire et au pied de page
+- [ ] Faire relire la politique de confidentialité (durée de conservation notamment)
+- [x] Ajouter les pages légales au sitemap (automatique via `legal`)
 
 ## Formulaire de contact
 
