@@ -108,6 +108,7 @@ export default async function ProjectCaseStudyPage({ params }: PageProps) {
                     rel="noopener noreferrer"
                   >
                     <Code2 size={16} aria-hidden="true" /> Voir le code sur GitHub
+                    <span className="sr-only">(nouvel onglet)</span>
                   </a>
                 )}
                 {caseStudy.demoHref && (
@@ -117,7 +118,8 @@ export default async function ProjectCaseStudyPage({ params }: PageProps) {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    Voir la démo <ArrowUpRight size={16} aria-hidden="true" />
+                    Voir la démo <span className="sr-only">(nouvel onglet)</span>
+                    <ArrowUpRight size={16} aria-hidden="true" />
                   </a>
                 )}
               </div>

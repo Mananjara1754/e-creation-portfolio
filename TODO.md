@@ -43,5 +43,5 @@ Cocher au fur et à mesure. Ajouter ici tout nouveau chantier.
 ## UX / UI / qualité
 
 - [ ] Audit Lighthouse (performance, accessibilité, SEO, bonnes pratiques)
-- [ ] Vérifier le responsive de 320px à grand écran
-- [ ] Vérifier la navigation clavier et les contrastes
+- [x] Vérifier le responsive de 320px à grand écran (aucun débordement à 320/375/768/1280px)
+- [x] Vérifier la navigation clavier et les contrastes (texte ≥ 4.5:1, contours de champs ≥ 3:1)

@@ -29,7 +29,8 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang={site.locale} className={poppins.variable}>
+    // La classe "js" est ajoutée par le script ci-dessous avant l'hydratation.
+    <html lang={site.locale} className={poppins.variable} suppressHydrationWarning>
       <head>
         <script
           dangerouslySetInnerHTML={{
