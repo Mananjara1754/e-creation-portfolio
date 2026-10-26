@@ -16,7 +16,7 @@ npm run format        # formate tout le code avec Prettier
 npm run preview       # build puis site statique et /api/contact servis par Wrangler (http://localhost:8787)
 ```
 
-Poppins est chargée via `next/font/google` : le build nécessite un accès réseau à Google Fonts.
+Poppins est chargée via `next/font/google` : le build nécessite un accès réseau à Google Fonts. Les images Open Graph utilisent les fichiers `.woff` de `@fontsource/poppins` (dépendance de dev), lus au build.
 
 Dans VS Code, installer les extensions Prettier et ESLint : le code est formaté et corrigé à l'enregistrement (`.vscode/settings.json`).
 
@@ -89,7 +89,7 @@ components/
   seo/                     JsonLd (données structurées schema.org)
 lib/
   seo.ts                   URL du site, titre par défaut, Open Graph commun, couleurs des images
-  og.tsx                   gabarit des images Open Graph et du logo
+  og.tsx                   gabarit des images Open Graph (en Poppins) et du logo
   visuals/                 maquettes CSS
 worker/
   index.ts                 Worker Cloudflare (route /api/*, le reste en assets statiques)
