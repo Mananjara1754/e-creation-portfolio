@@ -1,10 +1,8 @@
-// Déploiement Cloudflare Workers (Workers Builds : build `npm run build`, déploiement `npx wrangler deploy`).
+// Cloudflare Workers Builds : build `npm run build`, puis `npx wrangler deploy` (main) ou `npx wrangler preview` (branches).
 {
   "name": "e-creation-portfolio",
   "main": "worker/index.ts",
   "compatibility_date": "2025-09-01",
-  // Lancé par wrangler deploy / dev : out/ existe même si le dashboard n'a pas de commande de build.
-  "build": { "command": "npm run build" },
   "assets": {
     "directory": "./out",
     "binding": "ASSETS",
@@ -12,4 +10,6 @@
     "run_worker_first": ["/api/*"],
   },
   "observability": { "enabled": true },
+  // Requis par `wrangler preview` (versions de prévisualisation des branches).
+  "previews": {},
 }
