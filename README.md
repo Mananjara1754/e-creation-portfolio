@@ -30,8 +30,8 @@ Réglages du Worker dans Cloudflare :
 
 | Réglage                        | Valeur                                                                               |
 | ------------------------------ | ------------------------------------------------------------------------------------ |
-| Commande de build              | vide (Wrangler la lance via `build.command`)                                         |
-| Commande de déploiement        | `npx wrangler deploy`                                                                |
+| Commande de build              | `npm run build`                                                                      |
+| Commande de déploiement        | `npx wrangler deploy` (branches : `npx wrangler preview`)                            |
 | `NEXT_PUBLIC_SITE_URL`         | versionnée dans `.env.production` (une variable de build Cloudflare est prioritaire) |
 | Variables et secrets (runtime) | `RESEND_API_KEY`, `CONTACT_TO_EMAIL`, `CONTACT_FROM_EMAIL`                           |
 
