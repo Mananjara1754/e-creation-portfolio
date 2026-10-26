@@ -24,7 +24,7 @@ Dans VS Code, installer les extensions Prettier et ESLint : le code est formaté
 
 Hébergé sur Cloudflare Workers (Workers Builds relié au dépôt), en export statique : `next build` génère le site dans `out/` (HTML, sitemap, robots.txt, images), servi comme assets statiques du Worker. Seules les requêtes `/api/*` passent par le script `worker/index.ts` (`run_worker_first` dans `wrangler.jsonc`). Chaque push sur `main` déclenche un build puis la mise en production ; les autres branches obtiennent une version de prévisualisation. Si le build échoue, la version en ligne reste inchangée.
 
-URL actuelle : https://e-creation-portfolio.mananjara888.workers.dev (provisoire, en attendant le nom de domaine).
+Domaine : https://ecreation-mg.com (DNS chez Cloudflare, domaine acheté chez OVH, messagerie OVH : garder les enregistrements MX et SPF).
 
 Réglages du Worker dans Cloudflare :
 

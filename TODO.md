@@ -11,7 +11,7 @@ Cocher au fur et à mesure. Ajouter ici tout nouveau chantier.
 
 ## SEO
 
-- [ ] Remplacer l'URL provisoire workers.dev par le nom de domaine définitif (`.env.production`)
+- [x] Passer l'URL du site sur https://ecreation-mg.com (`.env.production`)
 - [x] `app/robots.ts` (bloquer `/api/`, lien vers le sitemap)
 - [x] `app/sitemap.ts` (lister chaque page)
 - [x] URL canonique dans les metadata (`app/layout.tsx`)
@@ -39,7 +39,10 @@ Cocher au fur et à mesure. Ajouter ici tout nouveau chantier.
 - [x] Créer le Worker relié au dépôt
 - [x] Réglages Cloudflare : build `npm run build`, déploiement `npx wrangler deploy` / `npx wrangler preview`
 - [ ] Déconnecter Vercel du dépôt (il build encore chaque push)
-- [ ] Brancher le domaine personnalisé, puis désactiver ou rediriger l'adresse `*.workers.dev`
+- [x] Brancher le domaine ecreation-mg.com (et www) sur le Worker
+- [ ] Rediriger www.ecreation-mg.com vers ecreation-mg.com (Redirect Rule Cloudflare)
+- [ ] Activer « Always Use HTTPS » (SSL/TLS → Edge Certificates)
+- [ ] Désactiver l'adresse `*.workers.dev` du Worker
 - [ ] Vérifier après déploiement : `curl -I` sur `/icon` et `/opengraph-image` (type `image/png`), `/sitemap.xml`, `/robots.txt`, 404
 
 ## UX / UI / qualité
