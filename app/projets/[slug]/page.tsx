@@ -3,6 +3,9 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowUpRight, Check, Code2 } from "lucide-react";
 import { site } from "@/config/site";
+import type { Project, ProjectCaseStudy } from "@/config/site.types";
+import { absoluteUrl, baseOpenGraph } from "@/lib/seo";
+import { JsonLd } from "@/components/seo/JsonLd";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { Reveal } from "@/components/ui/Reveal";
@@ -17,6 +20,9 @@ function getProject(slug: string) {
   return project?.caseStudy ? { project, caseStudy: project.caseStudy } : null;
 }
 
+// Slug inconnu : vrai 404 plutôt qu'une page rendue à la demande.
+export const dynamicParams = false;
+
 export function generateStaticParams() {
   return site.projects.filter((p) => p.caseStudy).map((p) => ({ slug: p.id }));
 }
@@ -24,10 +30,46 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
   const found = getProject(slug);
-  if (!found) return {};
+  if (!found) notFound();
+  const path = `/projets/${slug}`;
   return {
-    title: `${found.project.name} — ${site.companyName}`,
+    title: found.project.name,
     description: found.caseStudy.tagline,
+    alternates: { canonical: path },
+    openGraph: {
+      ...baseOpenGraph,
+      type: "article",
+      title: `${found.project.name} | ${site.companyName}`,
+      description: found.caseStudy.tagline,
+      url: path,
+    },
+  };
+}
+
+function getStructuredData(slug: string, project: Project, caseStudy: ProjectCaseStudy) {
+  const url = absoluteUrl(`/projets/${slug}`);
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Accueil", item: absoluteUrl("/") },
+          { "@type": "ListItem", position: 2, name: "Projets", item: absoluteUrl("/#projets") },
+          { "@type": "ListItem", position: 3, name: project.name, item: url },
+        ],
+      },
+      {
+        "@type": caseStudy.repoHref ? "SoftwareSourceCode" : "CreativeWork",
+        name: project.name,
+        description: caseStudy.tagline,
+        url,
+        inLanguage: site.locale,
+        keywords: project.technologies?.join(", "),
+        ...(caseStudy.repoHref ? { codeRepository: caseStudy.repoHref } : {}),
+        creator: { "@id": absoluteUrl("/#organisation") },
+      },
+    ],
   };
 }
 
@@ -39,6 +81,10 @@ export default async function ProjectCaseStudyPage({ params }: PageProps) {
 
   return (
     <>
+      <JsonLd data={getStructuredData(slug, project, caseStudy)} />
+      <a className="skip-link" href="#contenu">
+        Aller au contenu
+      </a>
       <Header />
       <main id="contenu">
         <section className="section section--border">

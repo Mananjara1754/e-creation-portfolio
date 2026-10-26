@@ -11,14 +11,17 @@ Cocher au fur et à mesure. Ajouter ici tout nouveau chantier.
 
 ## SEO
 
-- [ ] Définir l'URL réelle (`NEXT_PUBLIC_SITE_URL`)
-- [ ] `app/robots.ts` (bloquer `/api/`, lien vers le sitemap)
-- [ ] `app/sitemap.ts` (lister chaque page)
-- [ ] URL canonique dans les metadata (`app/layout.tsx`)
-- [ ] Favicon / icône (`app/icon.tsx` ou fichier)
-- [ ] Image Open Graph 1200×630 (`app/opengraph-image.tsx` ou visuel fourni)
-- [ ] Données structurées JSON-LD `Organization` (uniquement des infos confirmées)
-- [ ] Inscrire le site dans Google Search Console
+- [ ] Définir l'URL réelle (`NEXT_PUBLIC_SITE_URL`, obligatoire pour le build de production)
+- [x] `app/robots.ts` (bloquer `/api/`, lien vers le sitemap)
+- [x] `app/sitemap.ts` (lister chaque page)
+- [x] URL canonique dans les metadata (`app/layout.tsx`)
+- [x] Favicon / icône (`app/icon.tsx` ou fichier)
+- [x] Image Open Graph 1200×630 (`app/opengraph-image.tsx` ou visuel fourni)
+- [x] Données structurées JSON-LD `Organization` (uniquement des infos confirmées)
+- [ ] Inscrire le site dans Google Search Console et y soumettre `/sitemap.xml`
+- [ ] Valider le JSON-LD avec le test des résultats enrichis de Google une fois en ligne
+- [ ] Confirmer la ville / zone d'intervention pour le SEO local (titre, description, `address`/`areaServed` dans le JSON-LD, fiche Google Business Profile)
+- [ ] Intégrer Poppins dans les images Open Graph (police par défaut actuellement)
 
 ## Légal
 

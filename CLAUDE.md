@@ -15,6 +15,7 @@ Site vitrine one-page (Next.js 15 App Router, React 19, TypeScript). Tout en fra
 - Contenu : `config/site.ts` (types : `config/site.types.ts`). Les composants lisent `site` directement.
 - Sections : `components/sections/*`, ordre dans `app/page.tsx`.
 - Styles : `app/globals.css` (tokens dans `:root`, classes BEM, un bloc commenté par section).
+- SEO : `lib/seo.ts` (URL de base, titre, Open Graph commun), `app/robots.ts`, `app/sitemap.ts`, icônes et `opengraph-image.tsx` générés (`lib/og.tsx`), JSON-LD via `components/seo/JsonLd.tsx`. Toute nouvelle page : `alternates.canonical` + `openGraph` (avec `...baseOpenGraph`) et ajout au sitemap.
 - Formulaire : `components/sections/ContactForm.tsx` + `app/api/contact/route.ts` (envoi pas encore mis en place, voir `TODO.md`). Garder la validation client/serveur cohérente.
 
 ## Règles
@@ -23,7 +24,7 @@ Site vitrine one-page (Next.js 15 App Router, React 19, TypeScript). Tout en fra
 - `demoMode: true` affiche des « à renseigner » ; les projets actuels sont des démos (`isDemo`).
 - `caseStudyHref` seulement si la page existe.
 - Chaque changement doit rester SEO, UX et UI friendly :
-  - SEO : un seul `h1` (Hero), hiérarchie h2/h3, metadata dans `app/layout.tsx`, textes réels et descriptifs.
+  - SEO : un seul `h1` (Hero), hiérarchie h2/h3, metadata dans `app/layout.tsx` et par page, textes réels et descriptifs.
   - UX/accessibilité : navigation clavier, focus visible, `aria-*` corrects, contrastes suffisants, `prefers-reduced-motion`, contenu visible sans JS.
   - UI : responsive dès 320px, tokens de `globals.css` uniquement (pas de couleurs ou tailles en dur), cohérence avec les composants existants.
 - Si la structure change (nouvelle section, dépendance, variable d'env), mettre à jour ce fichier et le README.
