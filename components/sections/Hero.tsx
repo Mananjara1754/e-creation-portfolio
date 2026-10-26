@@ -1,4 +1,5 @@
 import { ArrowUpRight } from "lucide-react";
+import { site } from "@/config/site";
 import { BrowserMockup, CodeCard, PhoneMockup } from "@/components/visuals/Mockups";
 import { Reveal } from "@/components/ui/Reveal";
 
@@ -13,12 +14,14 @@ export function Hero() {
               Agence de développement digital
             </span>
             <h1 className="h1" id="hero-title">
-              Nous transformons vos idées en <span className="accent">expériences digitales</span>{" "}
-              performantes.
+              Sites web et applications mobiles qui transforment vos idées en{" "}
+              <span className="accent">expériences digitales</span> performantes.
             </h1>
             <p className="hero__lead">
               Du design UI/UX au développement web, mobile et backend, nous concevons des solutions
               numériques pensées pour vos utilisateurs et vos ambitions.
+              {site.location &&
+                ` Basés à ${site.location.city}, nous travaillons avec des clients partout.`}
             </p>
             <div className="hero__actions">
               <a className="btn btn--accent btn--lg" href="#contact">
