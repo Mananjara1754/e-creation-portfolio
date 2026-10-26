@@ -476,6 +476,9 @@ html:not(.js) .header__toggle {
   border-radius: 50%;
   background: var(--color-accent);
 }
+.hero__text .h1 {
+  font-size: clamp(2rem, 3.8vw, 3.75rem); /* titre long : reste sur ~5 lignes en bureau */
+}
 .hero__lead {
   margin-top: 1.75rem;
   max-width: 35rem;

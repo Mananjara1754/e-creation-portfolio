@@ -9,7 +9,8 @@ export const site: SiteConfig = {
   locale: "fr",
   demoMode: false,
   description:
-    "E-Creation conçoit et développe des sites web, applications mobiles, API et interfaces UI/UX pour transformer vos idées en produits numériques.",
+    "Agence basée à Antananarivo, E-Creation conçoit sites web, applications mobiles, API et interfaces UI/UX pour des clients à Madagascar et partout ailleurs.",
+  location: { city: "Antananarivo", country: "Madagascar", countryCode: "MG" },
   nav: [
     { label: "Accueil", href: "/#accueil" },
     { label: "Services", href: "/#services" },
