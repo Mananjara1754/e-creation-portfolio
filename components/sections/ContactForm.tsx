@@ -142,21 +142,23 @@ export function ContactForm() {
         </div>
       </div>
 
-      <div className="field">
-        <label htmlFor="type">Type de projet</label>
-        <select id="type" name="type" defaultValue={site.contactTypes[0]} {...field("type")}>
-          {site.contactTypes.map((t) => (
-            <option key={t} value={t}>
-              {t}
-            </option>
+      {/* Boutons radio plutôt qu'un select : les libellés passent à la ligne au lieu d'être tronqués. */}
+      <fieldset className="field" aria-describedby={errors.type ? "type-error" : undefined}>
+        <legend className="field__legend">Type de projet</legend>
+        <div className="choices">
+          {site.contactTypes.map((t, i) => (
+            <label key={t} className="choice">
+              <input type="radio" name="type" value={t} defaultChecked={i === 0} />
+              <span>{t}</span>
+            </label>
           ))}
-        </select>
+        </div>
         {errors.type && (
           <p className="field__error" id="type-error">
             {errors.type}
           </p>
         )}
-      </div>
+      </fieldset>
 
       <div className="field">
         <label htmlFor="message">Message</label>
