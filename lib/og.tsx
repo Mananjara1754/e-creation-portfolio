@@ -1,8 +1,24 @@
+import { readFile } from "node:fs/promises";
+import { join } from "node:path";
 import { ImageResponse } from "next/og";
 import { site } from "@/config/site";
 import { brandColors, logoPath } from "@/lib/seo";
 
 export const ogSize = { width: 1200, height: 630 };
+
+// next/og ne lit pas le WOFF2 : on prend les .woff de @fontsource/poppins, lus au build.
+const fontDir = join(process.cwd(), "node_modules/@fontsource/poppins/files");
+
+function loadPoppins() {
+  return Promise.all(
+    ([400, 500, 700] as const).map(async (weight) => ({
+      name: "Poppins",
+      data: await readFile(join(fontDir, `poppins-latin-${weight}-normal.woff`)),
+      weight,
+      style: "normal" as const,
+    })),
+  );
+}
 
 export function LogoMark({ size }: { size: number }) {
   return (
@@ -34,7 +50,7 @@ export function LogoMark({ size }: { size: number }) {
 }
 
 /** Image de partage 1200×630 : logo, surtitre, titre, description. */
-export function renderOgImage({
+export async function renderOgImage({
   eyebrow,
   title,
   description,
@@ -54,6 +70,7 @@ export function renderOgImage({
         padding: 72,
         background: brandColors.bg,
         color: brandColors.text,
+        fontFamily: "Poppins",
         borderBottom: `12px solid ${brandColors.accent}`,
       }}
     >
@@ -71,11 +88,12 @@ export function renderOgImage({
             border: `2px solid ${brandColors.border}`,
             color: brandColors.accent,
             fontSize: 26,
+            fontWeight: 500,
           }}
         >
           {eyebrow}
         </span>
-        <span style={{ fontSize: 64, fontWeight: 700, lineHeight: 1.1, letterSpacing: -1 }}>
+        <span style={{ fontSize: 60, fontWeight: 700, lineHeight: 1.15, letterSpacing: -1.5 }}>
           {title}
         </span>
         <span style={{ fontSize: 30, lineHeight: 1.4, color: brandColors.textMuted }}>
@@ -83,6 +101,6 @@ export function renderOgImage({
         </span>
       </div>
     </div>,
-    ogSize,
+    { ...ogSize, fonts: await loadPoppins() },
   );
 }

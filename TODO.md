@@ -21,7 +21,7 @@ Cocher au fur et à mesure. Ajouter ici tout nouveau chantier.
 - [ ] Inscrire le site dans Google Search Console et y soumettre `/sitemap.xml`
 - [ ] Valider le JSON-LD avec le test des résultats enrichis de Google une fois en ligne
 - [ ] Confirmer la ville / zone d'intervention pour le SEO local (titre, description, `address`/`areaServed` dans le JSON-LD, fiche Google Business Profile)
-- [ ] Intégrer Poppins dans les images Open Graph (police par défaut actuellement)
+- [x] Intégrer Poppins dans les images Open Graph
 
 ## Légal
 
