@@ -13,8 +13,8 @@ export function Hero() {
               Agence de développement digital
             </span>
             <h1 className="h1" id="hero-title">
-              Nous transformons vos idées en <span className="accent">expériences digitales</span>{" "}
-              performantes.
+              Sites web et applications mobiles qui transforment vos idées en{" "}
+              <span className="accent">expériences digitales</span> performantes.
             </h1>
             <p className="hero__lead">
               Du design UI/UX au développement web, mobile et backend, nous concevons des solutions

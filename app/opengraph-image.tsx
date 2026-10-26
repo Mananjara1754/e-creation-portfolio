@@ -11,7 +11,7 @@ export const contentType = "image/png";
 export default function OpengraphImage() {
   return renderOgImage({
     eyebrow: "Agence de développement digital",
-    title: "Nous transformons vos idées en expériences digitales performantes.",
+    title: "Sites web et applications mobiles qui transforment vos idées en expériences digitales.",
     description: "Web · Backend & API · Mobile · UI/UX Design",
   });
 }
