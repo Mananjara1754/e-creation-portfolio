@@ -1,4 +1,4 @@
-# En-têtes Cloudflare Pages (copié tel quel dans out/ au build).
+# En-têtes des fichiers statiques Cloudflare (copié tel quel dans out/ au build).
 # Les icônes et images Open Graph générées par Next sont exportées sans extension :
 # forcer leur type pour que navigateurs et réseaux sociaux les reconnaissent.
 /icon

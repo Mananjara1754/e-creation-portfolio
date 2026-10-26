@@ -1,8 +1,8 @@
-// Cloudflare Pages Function servie sur POST /api/contact (le site est exporté en statique).
-// Chemin relatif : les Functions sont empaquetées par Wrangler, sans l'alias "@/".
-import { site } from "../../config/site";
+// Envoi du formulaire de contact (POST /api/contact), appelé par worker/index.ts.
+// Chemin relatif : le Worker est empaqueté par Wrangler, sans l'alias "@/".
+import { site } from "../config/site";
 
-interface Env {
+export interface ContactEnv {
   RESEND_API_KEY?: string;
   CONTACT_TO_EMAIL?: string;
   CONTACT_FROM_EMAIL?: string;
@@ -50,7 +50,7 @@ function validate(p: Payload) {
   return { errors, values: { name, email, type, message } };
 }
 
-export async function onRequestPost({ request, env }: { request: Request; env: Env }) {
+export async function handleContact(request: Request, env: ContactEnv) {
   const ip = request.headers.get("CF-Connecting-IP") ?? "unknown";
   if (tooManyRequests(ip)) {
     return Response.json(

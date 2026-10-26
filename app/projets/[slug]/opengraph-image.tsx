@@ -1,7 +1,7 @@
 import { site } from "@/config/site";
 import { ogSize, renderOgImage } from "@/lib/og";
 
-// Généré au build (export statique pour Cloudflare Pages).
+// Généré au build (export statique pour Cloudflare).
 export const dynamic = "force-static";
 
 export const alt = `Étude de cas ${site.companyName}`;
