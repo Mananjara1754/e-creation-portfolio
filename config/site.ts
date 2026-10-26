@@ -7,7 +7,7 @@ import type { SiteConfig } from "./site.types";
 export const site: SiteConfig = {
   companyName: "E-Creation",
   locale: "fr",
-  demoMode: true,
+  demoMode: false,
   description:
     "E-Creation conçoit et développe des sites web, applications mobiles, API et interfaces UI/UX pour transformer vos idées en produits numériques.",
   nav: [
@@ -17,8 +17,8 @@ export const site: SiteConfig = {
     { label: "Approche", href: "/#approche" },
     { label: "Contact", href: "/#contact" },
   ],
-  // À renseigner : email, whatsapp (numéro réel au format international sans "+")
-  contact: {},
+  // whatsapp : numéro réel au format international sans "+", à ajouter quand il sera fourni
+  contact: { email: "contact@ecreation-mg.com" },
   contactTypes: [
     "Site web ou application web",
     "Backend & API",
