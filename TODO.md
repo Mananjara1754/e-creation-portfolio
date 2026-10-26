@@ -4,10 +4,11 @@ Cocher au fur et à mesure. Ajouter ici tout nouveau chantier.
 
 ## Contenu (config/site.ts)
 
-- [ ] Renseigner l'e-mail et le WhatsApp réels (`contact`)
+- [x] Renseigner l'e-mail réel (`contact@ecreation-mg.com`, boîte Zimbra OVH)
+- [ ] Renseigner le WhatsApp (`contact.whatsapp`)
 - [ ] Ajouter les réseaux sociaux (`socials`)
 - [x] Remplacer les projets de démo par de vraies réalisations (technologies, `caseStudyHref` si page)
-- [ ] Passer `demoMode` à `false` avant la mise en ligne
+- [x] Passer `demoMode` à `false`
 
 ## SEO
 
