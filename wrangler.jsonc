@@ -3,6 +3,8 @@
   "name": "e-creation-portfolio",
   "main": "worker/index.ts",
   "compatibility_date": "2025-09-01",
+  // Lancé par wrangler deploy / dev : out/ existe même si le dashboard n'a pas de commande de build.
+  "build": { "command": "npm run build" },
   "assets": {
     "directory": "./out",
     "binding": "ASSETS",

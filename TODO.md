@@ -37,7 +37,7 @@ Cocher au fur et à mesure. Ajouter ici tout nouveau chantier.
 ## Déploiement Cloudflare Workers
 
 - [x] Créer le Worker relié au dépôt
-- [ ] Vérifier dans Cloudflare : commande de build `npm run build`, déploiement `npx wrangler deploy`
+- [ ] Vérifier dans Cloudflare : commande de build vide (Wrangler la lance), déploiement `npx wrangler deploy`
 - [ ] Déconnecter Vercel du dépôt (il build encore chaque push)
 - [ ] Brancher le domaine personnalisé, puis désactiver ou rediriger l'adresse `*.workers.dev`
 - [ ] Vérifier après déploiement : `curl -I` sur `/icon` et `/opengraph-image` (type `image/png`), `/sitemap.xml`, `/robots.txt`, 404
