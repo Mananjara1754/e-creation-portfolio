@@ -6,7 +6,7 @@ interface Env extends ContactEnv {
   ASSETS: { fetch(request: Request): Promise<Response> };
 }
 
-export default {
+const worker = {
   async fetch(request: Request, env: Env): Promise<Response> {
     const { pathname } = new URL(request.url);
     if (pathname === "/api/contact") {
@@ -18,3 +18,5 @@ export default {
     return env.ASSETS.fetch(request);
   },
 };
+
+export default worker;
