@@ -12,6 +12,7 @@ export interface ContactEnv {
 const WINDOW_MS = 10 * 60 * 1000;
 const MAX_REQUESTS = 5;
 const hits = new Map<string, { count: number; resetAt: number }>();
+const MAX_BODY_BYTES = 10_000;
 
 function tooManyRequests(ip: string): boolean {
   const now = Date.now();
@@ -34,7 +35,9 @@ interface Payload {
 
 function validate(p: Payload) {
   const errors: Record<string, string> = {};
-  const name = typeof p.name === "string" ? p.name.trim() : "";
+  // Caractères de contrôle retirés : le nom finit dans l'objet du mail.
+  const name =
+    typeof p.name === "string" ? p.name.replace(/[\u0000-\u001f\u007f]/g, " ").trim() : "";
   const email = typeof p.email === "string" ? p.email.trim() : "";
   const type = typeof p.type === "string" ? p.type : "";
   const message = typeof p.message === "string" ? p.message.trim() : "";
@@ -51,6 +54,17 @@ function validate(p: Payload) {
 }
 
 export async function handleContact(request: Request, env: ContactEnv) {
+  // Uniquement le formulaire du site lui-même (un navigateur envoie toujours Origin sur un POST).
+  if (request.headers.get("Origin") !== new URL(request.url).origin) {
+    return Response.json({ error: "forbidden", message: "Requête refusée." }, { status: 403 });
+  }
+  if (!request.headers.get("Content-Type")?.startsWith("application/json")) {
+    return Response.json({ error: "invalid_type", message: "Requête invalide." }, { status: 415 });
+  }
+  if (Number(request.headers.get("Content-Length") ?? 0) > MAX_BODY_BYTES) {
+    return Response.json({ error: "too_large", message: "Message trop long." }, { status: 413 });
+  }
+
   const ip = request.headers.get("CF-Connecting-IP") ?? "unknown";
   if (tooManyRequests(ip)) {
     return Response.json(
@@ -61,7 +75,11 @@ export async function handleContact(request: Request, env: ContactEnv) {
 
   let body: Payload;
   try {
-    body = (await request.json()) as Payload;
+    const raw = await request.text();
+    if (raw.length > MAX_BODY_BYTES) {
+      return Response.json({ error: "too_large", message: "Message trop long." }, { status: 413 });
+    }
+    body = JSON.parse(raw) as Payload;
   } catch {
     return Response.json({ error: "invalid_json", message: "Requête invalide." }, { status: 400 });
   }

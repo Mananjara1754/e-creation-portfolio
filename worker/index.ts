@@ -13,7 +13,10 @@ const worker = {
       if (request.method !== "POST") {
         return new Response(null, { status: 405, headers: { Allow: "POST" } });
       }
-      return handleContact(request, env);
+      const res = await handleContact(request, env);
+      res.headers.set("X-Content-Type-Options", "nosniff");
+      res.headers.set("Cache-Control", "no-store");
+      return res;
     }
     return env.ASSETS.fetch(request);
   },
