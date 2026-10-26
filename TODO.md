@@ -31,7 +31,14 @@ Cocher au fur et à mesure. Ajouter ici tout nouveau chantier.
 
 ## Formulaire de contact
 
-- [ ] Mettre en place l'envoi du formulaire de contact
+- [ ] Créer un compte Resend, vérifier le domaine d'envoi et définir `RESEND_API_KEY`, `CONTACT_TO_EMAIL`, `CONTACT_FROM_EMAIL` dans Cloudflare Pages
+- [ ] Optionnel : règle de limitation de débit Cloudflare sur `/api/contact` (la limite en mémoire de la Function est indicative)
+
+## Déploiement Cloudflare Pages
+
+- [ ] Créer le projet Pages relié au dépôt (build `npm run build`, sortie `out`, `NEXT_PUBLIC_SITE_URL`)
+- [ ] Brancher le domaine personnalisé et rediriger `*.pages.dev` vers lui
+- [ ] Vérifier après déploiement : `curl -I` sur `/icon` et `/opengraph-image` (type `image/png`), `/sitemap.xml`, `/robots.txt`, 404
 
 ## UX / UI / qualité
 

@@ -5,7 +5,7 @@ Next.js 15 (App Router) + React 19 + TypeScript. Contenu en français, direction
 
 ## Lancer le projet
 
-Node 22 (`.nvmrc`, `nvm use` si nvm est installé ; `engines` dans `package.json` pour Vercel).
+Node 22 (`.nvmrc`, `nvm use` si nvm est installé ; `.nvmrc` est lu par le build Cloudflare Pages).
 
 ```bash
 npm install
@@ -13,7 +13,7 @@ npm run dev           # http://localhost:3000
 npm run typecheck     # vérification TypeScript
 npm run lint          # ESLint (règles Next + accessibilité jsx-a11y)
 npm run format        # formate tout le code avec Prettier
-npm run build && npm start
+npm run preview       # build + site statique et /api/contact servis par Wrangler
 ```
 
 Poppins est chargée via `next/font/google` : le build nécessite un accès réseau à Google Fonts.
@@ -22,7 +22,18 @@ Dans VS Code, installer les extensions Prettier et ESLint : le code est formaté
 
 ## Déploiement
 
-Hébergé sur Vercel : chaque push sur `main` déclenche un build (TypeScript + ESLint inclus) puis la mise en production ; chaque branche / pull request obtient une URL de prévisualisation. Si le build échoue, la version en ligne reste inchangée.
+Hébergé sur Cloudflare Pages, en export statique : `next build` génère le site dans `out/` (HTML, sitemap, robots.txt, images). Chaque push sur `main` déclenche un build puis la mise en production ; chaque branche obtient une URL de prévisualisation (non indexée). Si le build échoue, la version en ligne reste inchangée.
+
+Réglages du projet Cloudflare Pages :
+
+| Réglage             | Valeur                                                     |
+| ------------------- | ---------------------------------------------------------- |
+| Commande de build   | `npm run build`                                            |
+| Dossier de sortie   | `out`                                                      |
+| Variables (build)   | `NEXT_PUBLIC_SITE_URL` (obligatoire)                       |
+| Variables (runtime) | `RESEND_API_KEY`, `CONTACT_TO_EMAIL`, `CONTACT_FROM_EMAIL` |
+
+`/api/contact` est une Pages Function (`functions/api/contact.ts`), déployée automatiquement avec le site. `public/_headers` force le type `image/png` des icônes et images Open Graph, exportées sans extension.
 
 ## Où modifier le contenu
 
@@ -50,7 +61,7 @@ Les visuels sont des maquettes dessinées en CSS (`components/visuals/Mockups.ts
 
 ## Formulaire de contact
 
-À mettre en place : l'envoi des messages n'est pas encore configuré.
+Le formulaire poste sur `/api/contact`, une Pages Function (`functions/api/contact.ts`) qui envoie l'e-mail via Resend. Tant que `RESEND_API_KEY`, `CONTACT_TO_EMAIL` et `CONTACT_FROM_EMAIL` ne sont pas définies dans Cloudflare Pages, elle répond 501 et le site l'indique honnêtement. En local, ces variables vont dans `.dev.vars` (lu par Wrangler), pas dans `.env.local`. La validation est dupliquée dans `ContactForm.tsx` : garder les deux cohérentes.
 
 ## Variables d'environnement
 
@@ -69,7 +80,6 @@ app/
   robots.ts, sitemap.ts    /robots.txt et /sitemap.xml (générés depuis config/site.ts)
   icon.tsx, apple-icon.tsx favicon et icône Apple (générées, aussi logo du JSON-LD)
   opengraph-image.tsx      image de partage 1200×630 (une par étude de cas dans projets/[slug]/)
-  api/contact/route.ts     envoi du formulaire
 components/
   layout/                  Header, Footer
   sections/                une section de la page par fichier
@@ -79,6 +89,10 @@ lib/
   seo.ts                   URL du site, titre par défaut, Open Graph commun, couleurs des images
   og.tsx                   gabarit des images Open Graph et du logo
   visuals/                 maquettes CSS
+functions/
+  api/contact.ts           envoi du formulaire (Pages Function)
+public/
+  _headers                 en-têtes Cloudflare Pages
 config/
   site.ts                  données du site
   site.types.ts            types

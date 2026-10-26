@@ -2,6 +2,9 @@ import type { MetadataRoute } from "next";
 import { site } from "@/config/site";
 import { absoluteUrl } from "@/lib/seo";
 
+// Généré au build (export statique pour Cloudflare Pages).
+export const dynamic = "force-static";
+
 // Pas de lastModified : mieux vaut aucune date qu'une date fausse.
 export default function sitemap(): MetadataRoute.Sitemap {
   const projects = site.projects

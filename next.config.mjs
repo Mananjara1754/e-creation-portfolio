@@ -1,7 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // Export statique dans out/ pour Cloudflare Pages ; /api/contact est une Pages Function (functions/).
+  output: "export",
   reactStrictMode: true,
-  poweredByHeader: false,
 };
 
 export default nextConfig;
