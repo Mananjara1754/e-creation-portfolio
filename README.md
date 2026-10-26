@@ -5,7 +5,7 @@ Next.js 15 (App Router) + React 19 + TypeScript. Contenu en français, direction
 
 ## Lancer le projet
 
-Node 22 (`.nvmrc`, `nvm use` si nvm est installé ; `.nvmrc` est lu par le build Cloudflare Pages).
+Node 22 (`.nvmrc`, `nvm use` si nvm est installé ; `.nvmrc` est lu par Cloudflare Workers Builds).
 
 ```bash
 npm install
@@ -13,7 +13,7 @@ npm run dev           # http://localhost:3000
 npm run typecheck     # vérification TypeScript
 npm run lint          # ESLint (règles Next + accessibilité jsx-a11y)
 npm run format        # formate tout le code avec Prettier
-npm run preview       # build + site statique et /api/contact servis par Wrangler
+npm run preview       # build + site statique et /api/contact servis par Wrangler (http://localhost:8787)
 ```
 
 Poppins est chargée via `next/font/google` : le build nécessite un accès réseau à Google Fonts. Les images Open Graph utilisent les fichiers `.woff` de `@fontsource/poppins` (dépendance de dev), lus au build.
@@ -22,18 +22,20 @@ Dans VS Code, installer les extensions Prettier et ESLint : le code est formaté
 
 ## Déploiement
 
-Hébergé sur Cloudflare Pages, en export statique : `next build` génère le site dans `out/` (HTML, sitemap, robots.txt, images). Chaque push sur `main` déclenche un build puis la mise en production ; chaque branche obtient une URL de prévisualisation (non indexée). Si le build échoue, la version en ligne reste inchangée.
+Hébergé sur Cloudflare Workers (Workers Builds relié au dépôt), en export statique : `next build` génère le site dans `out/` (HTML, sitemap, robots.txt, images), servi comme assets statiques du Worker. Seules les requêtes `/api/*` passent par le script `worker/index.ts` (`run_worker_first` dans `wrangler.jsonc`). Chaque push sur `main` déclenche un build puis la mise en production ; les autres branches obtiennent une version de prévisualisation. Si le build échoue, la version en ligne reste inchangée.
 
-Réglages du projet Cloudflare Pages :
+URL actuelle : https://e-creation-portfolio.mananjara888.workers.dev (provisoire, en attendant le nom de domaine).
 
-| Réglage             | Valeur                                                     |
-| ------------------- | ---------------------------------------------------------- |
-| Commande de build   | `npm run build`                                            |
-| Dossier de sortie   | `out`                                                      |
-| Variables (build)   | `NEXT_PUBLIC_SITE_URL` (obligatoire)                       |
-| Variables (runtime) | `RESEND_API_KEY`, `CONTACT_TO_EMAIL`, `CONTACT_FROM_EMAIL` |
+Réglages du Worker dans Cloudflare :
 
-`/api/contact` est une Pages Function (`functions/api/contact.ts`), déployée automatiquement avec le site. `public/_headers` force le type `image/png` des icônes et images Open Graph, exportées sans extension.
+| Réglage                        | Valeur                                                                               |
+| ------------------------------ | ------------------------------------------------------------------------------------ |
+| Commande de build              | `npm run build`                                                                      |
+| Commande de déploiement        | `npx wrangler deploy`                                                                |
+| `NEXT_PUBLIC_SITE_URL`         | versionnée dans `.env.production` (une variable de build Cloudflare est prioritaire) |
+| Variables et secrets (runtime) | `RESEND_API_KEY`, `CONTACT_TO_EMAIL`, `CONTACT_FROM_EMAIL`                           |
+
+`public/_headers` force le type `image/png` des icônes et images Open Graph, exportées sans extension.
 
 ## Où modifier le contenu
 
@@ -61,7 +63,7 @@ Les visuels sont des maquettes dessinées en CSS (`components/visuals/Mockups.ts
 
 ## Formulaire de contact
 
-Le formulaire poste sur `/api/contact`, une Pages Function (`functions/api/contact.ts`) qui envoie l'e-mail via Resend. Tant que `RESEND_API_KEY`, `CONTACT_TO_EMAIL` et `CONTACT_FROM_EMAIL` ne sont pas définies dans Cloudflare Pages, elle répond 501 et le site l'indique honnêtement. En local, ces variables vont dans `.dev.vars` (lu par Wrangler), pas dans `.env.local`. La validation est dupliquée dans `ContactForm.tsx` : garder les deux cohérentes.
+Le formulaire poste sur `/api/contact`, géré par le Worker (`worker/contact.ts`) qui envoie l'e-mail via Resend. Tant que `RESEND_API_KEY`, `CONTACT_TO_EMAIL` et `CONTACT_FROM_EMAIL` ne sont pas définies dans Cloudflare, il répond 501 et le site l'indique honnêtement. En local, ces variables vont dans `.dev.vars` (lu par Wrangler), pas dans `.env.local`. La validation est dupliquée dans `ContactForm.tsx` : garder les deux cohérentes.
 
 ## Variables d'environnement
 
@@ -89,10 +91,13 @@ lib/
   seo.ts                   URL du site, titre par défaut, Open Graph commun, couleurs des images
   og.tsx                   gabarit des images Open Graph (en Poppins) et du logo
   visuals/                 maquettes CSS
-functions/
-  api/contact.ts           envoi du formulaire (Pages Function)
+worker/
+  index.ts                 Worker Cloudflare (route /api/*, le reste en assets statiques)
+  contact.ts               envoi du formulaire
 public/
-  _headers                 en-têtes Cloudflare Pages
+  _headers                 en-têtes des fichiers statiques Cloudflare
+wrangler.jsonc             configuration Cloudflare Workers
+.env.production            URL publique utilisée au build
 config/
   site.ts                  données du site
   site.types.ts            types

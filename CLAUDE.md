@@ -7,8 +7,8 @@ Site vitrine one-page (Next.js 15 App Router, React 19, TypeScript). Tout en fra
 - `npm run dev` / `npm run build` (build = réseau requis pour Poppins)
 - Ne jamais lancer `npm run build` pendant que `npm run dev` tourne (même dossier `.next`, ça casse le serveur de dev) ; vérifier avec `typecheck` + `lint` à la place.
 - Avant de rendre la main : `npm run typecheck && npm run lint && npm run format` (pas de tests)
-- Déploiement : Cloudflare Pages, export statique (`output: "export"` → `out/`), build à chaque push, pas de CI GitHub. Node 22 (`engines: 22.x`, `.nvmrc`).
-- Export statique : pas de rendu serveur ni de route API dans `app/` ; les routes de métadonnées ont `dynamic = "force-static"`. Le code serveur va dans `functions/` (Pages Functions). Tester le tout avec `npm run preview` (Wrangler).
+- Déploiement : Cloudflare Workers (Workers Builds, `wrangler.jsonc`), export statique (`output: "export"` → `out/`) servi en assets, build à chaque push, pas de CI GitHub. URL publique dans `.env.production`. Node 22 (`engines: 22.x`, `.nvmrc`).
+- Export statique : pas de rendu serveur ni de route API dans `app/` ; les routes de métadonnées ont `dynamic = "force-static"`. Le code serveur va dans `worker/` (seul `/api/*` passe par le Worker). Tester le tout avec `npm run preview` (Wrangler).
 - Prettier `printWidth: 100` ; ESLint flat config (`eslint.config.mjs`) : next/core-web-vitals, next/typescript, jsx-a11y.
 
 ## Où sont les choses
@@ -17,7 +17,7 @@ Site vitrine one-page (Next.js 15 App Router, React 19, TypeScript). Tout en fra
 - Sections : `components/sections/*`, ordre dans `app/page.tsx`.
 - Styles : `app/globals.css` (tokens dans `:root`, classes BEM, un bloc commenté par section).
 - SEO : `lib/seo.ts` (URL de base, titre, Open Graph commun), `app/robots.ts`, `app/sitemap.ts`, icônes et `opengraph-image.tsx` générés (`lib/og.tsx`, Poppins lue depuis la dépendance de dev `@fontsource/poppins`), JSON-LD via `components/seo/JsonLd.tsx`. Toute nouvelle page : `alternates.canonical` + `openGraph` (avec `...baseOpenGraph`) et ajout au sitemap.
-- Formulaire : `components/sections/ContactForm.tsx` + `functions/api/contact.ts` (Pages Function, envoi via Resend une fois les variables définies). Garder la validation client/serveur cohérente.
+- Formulaire : `components/sections/ContactForm.tsx` + `worker/contact.ts` (Worker Cloudflare, envoi via Resend une fois les variables définies). Garder la validation client/serveur cohérente.
 
 ## Règles
 

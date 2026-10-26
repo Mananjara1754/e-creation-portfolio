@@ -1,0 +1,13 @@
+// Déploiement Cloudflare Workers (Workers Builds : build `npm run build`, déploiement `npx wrangler deploy`).
+{
+  "name": "e-creation-portfolio",
+  "main": "worker/index.ts",
+  "compatibility_date": "2025-09-01",
+  "assets": {
+    "directory": "./out",
+    "binding": "ASSETS",
+    "not_found_handling": "404-page",
+    "run_worker_first": ["/api/*"],
+  },
+  "observability": { "enabled": true },
+}

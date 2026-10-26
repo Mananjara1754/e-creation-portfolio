@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 import { site } from "@/config/site";
 import { absoluteUrl } from "@/lib/seo";
 
-// Généré au build (export statique pour Cloudflare Pages).
+// Généré au build (export statique pour Cloudflare).
 export const dynamic = "force-static";
 
 // Pas de lastModified : mieux vaut aucune date qu'une date fausse.
