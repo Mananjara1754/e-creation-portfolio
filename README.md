@@ -13,7 +13,7 @@ npm run dev           # http://localhost:3000
 npm run typecheck     # vérification TypeScript
 npm run lint          # ESLint (règles Next + accessibilité jsx-a11y)
 npm run format        # formate tout le code avec Prettier
-npm run preview       # build + site statique et /api/contact servis par Wrangler (http://localhost:8787)
+npm run preview       # build puis site statique et /api/contact servis par Wrangler (http://localhost:8787)
 ```
 
 Poppins est chargée via `next/font/google` : le build nécessite un accès réseau à Google Fonts. Les images Open Graph utilisent les fichiers `.woff` de `@fontsource/poppins` (dépendance de dev), lus au build.
@@ -30,7 +30,7 @@ Réglages du Worker dans Cloudflare :
 
 | Réglage                        | Valeur                                                                               |
 | ------------------------------ | ------------------------------------------------------------------------------------ |
-| Commande de build              | `npm run build`                                                                      |
+| Commande de build              | vide (Wrangler la lance via `build.command`)                                         |
 | Commande de déploiement        | `npx wrangler deploy`                                                                |
 | `NEXT_PUBLIC_SITE_URL`         | versionnée dans `.env.production` (une variable de build Cloudflare est prioritaire) |
 | Variables et secrets (runtime) | `RESEND_API_KEY`, `CONTACT_TO_EMAIL`, `CONTACT_FROM_EMAIL`                           |

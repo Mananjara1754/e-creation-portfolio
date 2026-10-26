@@ -8,7 +8,7 @@ Site vitrine one-page (Next.js 15 App Router, React 19, TypeScript). Tout en fra
 - Ne jamais lancer `npm run build` pendant que `npm run dev` tourne (même dossier `.next`, ça casse le serveur de dev) ; vérifier avec `typecheck` + `lint` à la place.
 - Avant de rendre la main : `npm run typecheck && npm run lint && npm run format` (pas de tests)
 - Déploiement : Cloudflare Workers (Workers Builds, `wrangler.jsonc`), export statique (`output: "export"` → `out/`) servi en assets, build à chaque push, pas de CI GitHub. URL publique dans `.env.production`. Node 22 (`engines: 22.x`, `.nvmrc`).
-- Export statique : pas de rendu serveur ni de route API dans `app/` ; les routes de métadonnées ont `dynamic = "force-static"`. Le code serveur va dans `worker/` (seul `/api/*` passe par le Worker). Tester le tout avec `npm run preview` (Wrangler).
+- Export statique : pas de rendu serveur ni de route API dans `app/` ; les routes de métadonnées ont `dynamic = "force-static"`. Le code serveur va dans `worker/` (seul `/api/*` passe par le Worker). Tester le tout avec `npm run preview` (Wrangler, qui lance le build via `build.command`).
 - Prettier `printWidth: 100` ; ESLint flat config (`eslint.config.mjs`) : next/core-web-vitals, next/typescript, jsx-a11y.
 
 ## Où sont les choses
