@@ -28,6 +28,11 @@ export function Contact() {
           </p>
 
           <div className="contact__rows">
+            {site.location && (
+              <Row label="Basés à">
+                {site.location.city}, {site.location.country} · clients partout, à distance
+              </Row>
+            )}
             {email ? (
               <Row label="E-mail">
                 <a className="navlink" href={`mailto:${email}`}>

@@ -76,6 +76,8 @@ export interface SiteConfig {
   description: string;
   tagline?: string;
   nav: NavLink[];
+  /** Ville et pays affichés (pas d'adresse postale tant qu'elle n'est pas fournie). */
+  location?: { city: string; country: string; countryCode: string };
   contact: { email?: string; whatsapp?: string };
   contactTypes: string[];
   socials: SocialLink[];

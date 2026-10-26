@@ -15,7 +15,7 @@ export function absoluteUrl(path = "/") {
   return new URL(path, `${siteUrl}/`).toString();
 }
 
-export const defaultTitle = `${site.companyName} | Agence de développement web, mobile et UI/UX`;
+export const defaultTitle = `${site.companyName} | Développement web et mobile à Madagascar`;
 
 /** Open Graph commun : à étendre dans chaque page (les metadata enfants remplacent l'objet entier). */
 export const baseOpenGraph = {

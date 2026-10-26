@@ -31,6 +31,15 @@ const structuredData = {
       logo: absoluteUrl("/apple-icon"),
       description: site.description,
       knowsAbout: site.services.map((s) => s.title),
+      ...(site.location
+        ? {
+            address: {
+              "@type": "PostalAddress",
+              addressLocality: site.location.city,
+              addressCountry: site.location.countryCode,
+            },
+          }
+        : {}),
       ...(site.contact.email ? { email: site.contact.email } : {}),
       ...(site.socials.length > 0 ? { sameAs: site.socials.map((s) => s.href) } : {}),
     },
