@@ -2,7 +2,7 @@ import { ImageResponse } from "next/og";
 import { brandColors } from "@/lib/seo";
 import { LogoMark } from "@/lib/og";
 
-// Généré au build (export statique pour Cloudflare Pages).
+// Généré au build (export statique pour Cloudflare).
 export const dynamic = "force-static";
 
 // Sert aussi de logo (≥ 112 px) dans les données structurées Organization.
