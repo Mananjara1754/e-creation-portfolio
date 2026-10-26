@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, type FormEvent } from "react";
+import Link from "next/link";
 import { site } from "@/config/site";
 
 type Status = "idle" | "loading" | "success" | "error";
@@ -196,6 +197,15 @@ export function ContactForm() {
       >
         {status === "loading" ? "Envoi en cours…" : "Envoyer le message"}
       </button>
+
+      {site.legal.privacyHref && (
+        <p className="form__note">
+          Vos données servent uniquement à vous répondre.{" "}
+          <Link className="textlink" href={site.legal.privacyHref}>
+            Politique de confidentialité
+          </Link>
+        </p>
+      )}
     </form>
   );
 }

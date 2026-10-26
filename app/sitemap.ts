@@ -11,5 +11,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     .filter((p) => p.caseStudy)
     .map((p) => ({ url: absoluteUrl(`/projets/${p.id}`) }));
 
-  return [{ url: absoluteUrl("/") }, ...projects];
+  const legal = [site.legal.privacyHref, site.legal.legalHref]
+    .filter((href): href is string => Boolean(href))
+    .map((href) => ({ url: absoluteUrl(href) }));
+
+  return [{ url: absoluteUrl("/") }, ...projects, ...legal];
 }
