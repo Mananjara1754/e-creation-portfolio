@@ -1,8 +1,14 @@
-import { NextResponse } from "next/server";
-import { site } from "@/config/site";
+// Envoi du formulaire de contact (POST /api/contact), appelé par worker/index.ts.
+// Chemin relatif : le Worker est empaqueté par Wrangler, sans l'alias "@/".
+import { site } from "../config/site";
 
-export const runtime = "nodejs";
+export interface ContactEnv {
+  RESEND_API_KEY?: string;
+  CONTACT_TO_EMAIL?: string;
+  CONTACT_FROM_EMAIL?: string;
+}
 
+// Limite indicative : la mémoire est propre à chaque instance Cloudflare.
 const WINDOW_MS = 10 * 60 * 1000;
 const MAX_REQUESTS = 5;
 const hits = new Map<string, { count: number; resetAt: number }>();
@@ -44,10 +50,10 @@ function validate(p: Payload) {
   return { errors, values: { name, email, type, message } };
 }
 
-export async function POST(request: Request) {
-  const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "unknown";
+export async function handleContact(request: Request, env: ContactEnv) {
+  const ip = request.headers.get("CF-Connecting-IP") ?? "unknown";
   if (tooManyRequests(ip)) {
-    return NextResponse.json(
+    return Response.json(
       { error: "rate_limited", message: "Trop de tentatives. Réessayez dans quelques minutes." },
       { status: 429 },
     );
@@ -57,28 +63,25 @@ export async function POST(request: Request) {
   try {
     body = (await request.json()) as Payload;
   } catch {
-    return NextResponse.json(
-      { error: "invalid_json", message: "Requête invalide." },
-      { status: 400 },
-    );
+    return Response.json({ error: "invalid_json", message: "Requête invalide." }, { status: 400 });
   }
 
   // Honeypot : un humain ne remplit jamais ce champ. On répond comme si tout allait bien.
   if (typeof body.website === "string" && body.website.length > 0) {
-    return NextResponse.json({ ok: true });
+    return Response.json({ ok: true });
   }
 
   const { errors, values } = validate(body);
   if (Object.keys(errors).length > 0) {
-    return NextResponse.json({ error: "validation", errors }, { status: 422 });
+    return Response.json({ error: "validation", errors }, { status: 422 });
   }
 
-  const apiKey = process.env.RESEND_API_KEY;
-  const to = process.env.CONTACT_TO_EMAIL;
-  const from = process.env.CONTACT_FROM_EMAIL;
+  const apiKey = env.RESEND_API_KEY;
+  const to = env.CONTACT_TO_EMAIL;
+  const from = env.CONTACT_FROM_EMAIL;
 
   if (!apiKey || !to || !from) {
-    return NextResponse.json(
+    return Response.json(
       {
         error: "not_configured",
         message: "L'envoi du formulaire n'est pas encore configuré.",
@@ -111,11 +114,11 @@ export async function POST(request: Request) {
   });
 
   if (!res.ok) {
-    return NextResponse.json(
+    return Response.json(
       { error: "send_failed", message: "L'envoi a échoué. Réessayez plus tard." },
       { status: 502 },
     );
   }
 
-  return NextResponse.json({ ok: true });
+  return Response.json({ ok: true });
 }

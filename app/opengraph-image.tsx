@@ -1,6 +1,9 @@
 import { site } from "@/config/site";
 import { ogSize, renderOgImage } from "@/lib/og";
 
+// Généré au build (export statique pour Cloudflare).
+export const dynamic = "force-static";
+
 export const alt = `${site.companyName}, agence de développement web, mobile, backend et UI/UX`;
 export const size = ogSize;
 export const contentType = "image/png";

@@ -1,6 +1,9 @@
 import { ImageResponse } from "next/og";
 import { LogoMark } from "@/lib/og";
 
+// Généré au build (export statique pour Cloudflare).
+export const dynamic = "force-static";
+
 export const size = { width: 32, height: 32 };
 export const contentType = "image/png";
 

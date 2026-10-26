@@ -11,7 +11,7 @@ Cocher au fur et à mesure. Ajouter ici tout nouveau chantier.
 
 ## SEO
 
-- [ ] Définir l'URL réelle (`NEXT_PUBLIC_SITE_URL`, obligatoire pour le build de production)
+- [ ] Remplacer l'URL provisoire workers.dev par le nom de domaine définitif (`.env.production`)
 - [x] `app/robots.ts` (bloquer `/api/`, lien vers le sitemap)
 - [x] `app/sitemap.ts` (lister chaque page)
 - [x] URL canonique dans les metadata (`app/layout.tsx`)
@@ -31,7 +31,16 @@ Cocher au fur et à mesure. Ajouter ici tout nouveau chantier.
 
 ## Formulaire de contact
 
-- [ ] Mettre en place l'envoi du formulaire de contact
+- [ ] Créer un compte Resend, vérifier le domaine d'envoi et définir `RESEND_API_KEY`, `CONTACT_TO_EMAIL`, `CONTACT_FROM_EMAIL` dans Cloudflare (Variables and Secrets du Worker)
+- [ ] Optionnel : règle de limitation de débit Cloudflare sur `/api/contact` (la limite en mémoire de la Function est indicative)
+
+## Déploiement Cloudflare Workers
+
+- [x] Créer le Worker relié au dépôt
+- [x] Réglages Cloudflare : build `npm run build`, déploiement `npx wrangler deploy` / `npx wrangler preview`
+- [ ] Déconnecter Vercel du dépôt (il build encore chaque push)
+- [ ] Brancher le domaine personnalisé, puis désactiver ou rediriger l'adresse `*.workers.dev`
+- [ ] Vérifier après déploiement : `curl -I` sur `/icon` et `/opengraph-image` (type `image/png`), `/sitemap.xml`, `/robots.txt`, 404
 
 ## UX / UI / qualité
 

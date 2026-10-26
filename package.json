@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
+    "preview": "next build && wrangler dev",
     "typecheck": "tsc --noEmit",
     "lint": "eslint .",
     "format": "prettier --write .",
@@ -25,7 +25,8 @@
     "eslint": "^9.39.5",
     "eslint-config-next": "^15.5.28",
     "prettier": "^3.9.10",
-    "typescript": "^5.9.3"
+    "typescript": "^5.9.3",
+    "wrangler": "^4.153.0"
   },
   "engines": {
     "node": "22.x"
