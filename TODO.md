@@ -21,7 +21,8 @@ Cocher au fur et à mesure. Ajouter ici tout nouveau chantier.
 - [x] Données structurées JSON-LD `Organization` (uniquement des infos confirmées)
 - [ ] Inscrire le site dans Google Search Console et y soumettre `/sitemap.xml`
 - [ ] Valider le JSON-LD avec le test des résultats enrichis de Google une fois en ligne
-- [ ] Confirmer la ville / zone d'intervention pour le SEO local (titre, description, `address`/`areaServed` dans le JSON-LD, fiche Google Business Profile)
+- [x] Confirmer la ville pour le SEO local (Antananarivo, `address` dans le JSON-LD)
+- [ ] Créer la fiche Google Business Profile
 - [x] Intégrer Poppins dans les images Open Graph
 
 ## Légal
@@ -33,8 +34,8 @@ Cocher au fur et à mesure. Ajouter ici tout nouveau chantier.
 
 ## Formulaire de contact
 
-- [ ] Créer un compte Resend, vérifier le domaine d'envoi et définir `RESEND_API_KEY`, `CONTACT_TO_EMAIL`, `CONTACT_FROM_EMAIL` dans Cloudflare (Variables and Secrets du Worker)
-- [ ] Optionnel : règle de limitation de débit Cloudflare sur `/api/contact` (la limite en mémoire de la Function est indicative)
+- [x] Créer un compte Resend, vérifier le domaine d'envoi et définir `RESEND_API_KEY`, `CONTACT_TO_EMAIL`, `CONTACT_FROM_EMAIL` dans Cloudflare (Variables and Secrets du Worker)
+- [x] Limite d'envois sur `/api/contact` (binding `CONTACT_LIMITER` du Worker)
 
 ## Déploiement Cloudflare Workers
 
@@ -42,12 +43,18 @@ Cocher au fur et à mesure. Ajouter ici tout nouveau chantier.
 - [x] Réglages Cloudflare : build `npm run build`, déploiement `npx wrangler deploy` / `npx wrangler preview`
 - [ ] Déconnecter Vercel du dépôt (il build encore chaque push)
 - [x] Brancher le domaine ecreation-mg.com (et www) sur le Worker
-- [ ] Rediriger www.ecreation-mg.com vers ecreation-mg.com (Redirect Rule Cloudflare)
-- [ ] Activer « Always Use HTTPS » (SSL/TLS → Edge Certificates)
+- [x] Rediriger www.ecreation-mg.com vers ecreation-mg.com (Redirect Rule Cloudflare)
+- [x] Activer « Always Use HTTPS » (SSL/TLS → Edge Certificates)
+- [ ] Vérifier que Workers Builds suit bien `mankafy/e-creation-portfolio` depuis le transfert du dépôt
 - [ ] Désactiver l'adresse `*.workers.dev` du Worker
 - [ ] Vérifier après déploiement : `curl -I` sur `/icon` et `/opengraph-image` (type `image/png`), `/sitemap.xml`, `/robots.txt`, 404
 
 - [x] Anti-robot Turnstile sur le formulaire (secret `TURNSTILE_SECRET_KEY` dans Cloudflare)
+
+## E-mail
+
+- [x] DMARC en `p=quarantine`
+- [ ] Passer DMARC en `p=reject` si aucun vrai mail ne tombe en spam d'ici fin novembre 2026
 
 ## UX / UI / qualité
 
