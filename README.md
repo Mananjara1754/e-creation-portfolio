@@ -63,15 +63,17 @@ Les visuels sont des maquettes dessinées en CSS (`components/visuals/Mockups.ts
 
 ## Formulaire de contact
 
-Le formulaire poste sur `/api/contact`, géré par le Worker (`worker/contact.ts`) qui envoie l'e-mail via Resend. Tant que `RESEND_API_KEY`, `CONTACT_TO_EMAIL` et `CONTACT_FROM_EMAIL` ne sont pas définies dans Cloudflare, il répond 501 et le site l'indique honnêtement. En local, ces variables vont dans `.dev.vars` (lu par Wrangler), pas dans `.env.local`. La validation est dupliquée dans `ContactForm.tsx` : garder les deux cohérentes.
+Le formulaire poste sur `/api/contact`, géré par le Worker (`worker/contact.ts`) qui envoie l'e-mail via Resend. Tant que `RESEND_API_KEY`, `CONTACT_TO_EMAIL` et `CONTACT_FROM_EMAIL` ne sont pas définies dans Cloudflare, il répond 501 et le site l'indique honnêtement. En local, ces variables vont dans `.dev.vars` (lu par Wrangler), pas dans `.env.local`. La validation est dupliquée dans `ContactForm.tsx` : garder les deux cohérentes. Protections : anti-robot Cloudflare Turnstile (si `TURNSTILE_SECRET_KEY` est défini), limite de 3 envois par minute et par IP (`ratelimits` dans `wrangler.jsonc`), champ piège, vérification de l'origine et de la taille.
 
 ## Variables d'environnement
 
 Copier `.env.example` vers `.env.local` :
 
-| Variable               | Rôle                                                                                                                              |
-| ---------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
-| `NEXT_PUBLIC_SITE_URL` | URL publique (canonicals, sitemap, Open Graph, JSON-LD). **Obligatoire en production** (le build échoue sinon) ; localhost en dev |
+| Variable                         | Rôle                                                                                                                              |
+| -------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| `NEXT_PUBLIC_SITE_URL`           | URL publique (canonicals, sitemap, Open Graph, JSON-LD). **Obligatoire en production** (le build échoue sinon) ; localhost en dev |
+| `NEXT_PUBLIC_TURNSTILE_SITE_KEY` | Clé publique de l'anti-robot Turnstile du formulaire (`.env.production` : réelle, `.env.development` : clé de test)               |
+| `TURNSTILE_SECRET_KEY`           | Secret Turnstile, **uniquement dans Cloudflare** (Worker → Variables and Secrets). Sans lui, pas de vérification anti-robot       |
 
 ## Structure
 

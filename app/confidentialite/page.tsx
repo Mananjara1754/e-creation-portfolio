@@ -74,7 +74,8 @@ export default function PrivacyPage() {
               <li>OVHcloud, qui héberge notre messagerie.</li>
               <li>
                 Cloudflare, qui héberge le site et traite les données techniques de connexion
-                nécessaires à son fonctionnement et à sa sécurité.
+                nécessaires à son fonctionnement et à sa sécurité, dont la vérification anti-robot
+                du formulaire (Turnstile, sans cookie).
               </li>
             </ul>
             <p>

@@ -6,15 +6,20 @@ export interface ContactEnv {
   RESEND_API_KEY?: string;
   CONTACT_TO_EMAIL?: string;
   CONTACT_FROM_EMAIL?: string;
+  /** Secret Turnstile : sans lui, pas de vérification anti-robot. */
+  TURNSTILE_SECRET_KEY?: string;
+  /** 3 envois par minute et par IP (wrangler.jsonc, `ratelimits`). */
+  CONTACT_LIMITER?: { limit(options: { key: string }): Promise<{ success: boolean }> };
 }
 
-// Limite indicative : la mémoire est propre à chaque instance Cloudflare.
+// Secours si la limite Cloudflare n'est pas disponible : compteur propre à chaque instance.
 const WINDOW_MS = 10 * 60 * 1000;
 const MAX_REQUESTS = 5;
 const hits = new Map<string, { count: number; resetAt: number }>();
 const MAX_BODY_BYTES = 10_000;
 
-function tooManyRequests(ip: string): boolean {
+async function tooManyRequests(ip: string, env: ContactEnv): Promise<boolean> {
+  if (env.CONTACT_LIMITER) return !(await env.CONTACT_LIMITER.limit({ key: ip })).success;
   const now = Date.now();
   const entry = hits.get(ip);
   if (!entry || entry.resetAt < now) {
@@ -31,6 +36,7 @@ interface Payload {
   type?: unknown;
   message?: unknown;
   website?: unknown; // honeypot
+  "cf-turnstile-response"?: unknown;
 }
 
 function validate(p: Payload) {
@@ -53,6 +59,21 @@ function validate(p: Payload) {
   return { errors, values: { name, email, type, message } };
 }
 
+async function isHuman(token: unknown, secret: string, ip: string): Promise<boolean> {
+  if (typeof token !== "string" || token.length === 0 || token.length > 2048) return false;
+  const form = new FormData();
+  form.append("secret", secret);
+  form.append("response", token);
+  if (ip !== "unknown") form.append("remoteip", ip);
+  const res = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", {
+    method: "POST",
+    body: form,
+  });
+  if (!res.ok) return false;
+  const result = (await res.json()) as { success?: boolean };
+  return result.success === true;
+}
+
 export async function handleContact(request: Request, env: ContactEnv) {
   // Uniquement le formulaire du site lui-même (un navigateur envoie toujours Origin sur un POST).
   if (request.headers.get("Origin") !== new URL(request.url).origin) {
@@ -66,7 +87,7 @@ export async function handleContact(request: Request, env: ContactEnv) {
   }
 
   const ip = request.headers.get("CF-Connecting-IP") ?? "unknown";
-  if (tooManyRequests(ip)) {
+  if (await tooManyRequests(ip, env)) {
     return Response.json(
       { error: "rate_limited", message: "Trop de tentatives. Réessayez dans quelques minutes." },
       { status: 429 },
@@ -92,6 +113,14 @@ export async function handleContact(request: Request, env: ContactEnv) {
   const { errors, values } = validate(body);
   if (Object.keys(errors).length > 0) {
     return Response.json({ error: "validation", errors }, { status: 422 });
+  }
+
+  const secret = env.TURNSTILE_SECRET_KEY;
+  if (secret && !(await isHuman(body["cf-turnstile-response"], secret, ip))) {
+    return Response.json(
+      { error: "captcha", message: "La vérification anti-robot a échoué. Réessayez." },
+      { status: 403 },
+    );
   }
 
   const apiKey = env.RESEND_API_KEY;

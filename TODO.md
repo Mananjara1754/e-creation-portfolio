@@ -47,6 +47,8 @@ Cocher au fur et à mesure. Ajouter ici tout nouveau chantier.
 - [ ] Désactiver l'adresse `*.workers.dev` du Worker
 - [ ] Vérifier après déploiement : `curl -I` sur `/icon` et `/opengraph-image` (type `image/png`), `/sitemap.xml`, `/robots.txt`, 404
 
+- [x] Anti-robot Turnstile sur le formulaire (secret `TURNSTILE_SECRET_KEY` dans Cloudflare)
+
 ## UX / UI / qualité
 
 - [ ] Audit Lighthouse (performance, accessibilité, SEO, bonnes pratiques)
