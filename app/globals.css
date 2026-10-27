@@ -1432,6 +1432,9 @@ fieldset.field {
   font-size: 0.875rem;
   color: var(--color-error-text);
 }
+.form__captcha:empty {
+  display: none;
+}
 .form__note {
   font-size: 0.8125rem;
   color: var(--color-text-muted);

@@ -5,6 +5,39 @@ import Link from "next/link";
 import { site } from "@/config/site";
 
 type Status = "idle" | "loading" | "success" | "error";
+
+// Anti-robot Cloudflare Turnstile, vérifié par le Worker (worker/contact.ts).
+const TURNSTILE_SRC = "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit";
+const turnstileSiteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
+
+interface Turnstile {
+  render(el: HTMLElement, options: Record<string, unknown>): string;
+  reset(widgetId?: string): void;
+  remove(widgetId: string): void;
+}
+
+declare global {
+  interface Window {
+    turnstile?: Turnstile;
+  }
+}
+
+function loadTurnstile(): Promise<Turnstile> {
+  if (window.turnstile) return Promise.resolve(window.turnstile);
+  return new Promise((resolve, reject) => {
+    let script = document.querySelector<HTMLScriptElement>(`script[src="${TURNSTILE_SRC}"]`);
+    if (!script) {
+      script = document.createElement("script");
+      script.src = TURNSTILE_SRC;
+      script.async = true;
+      document.head.appendChild(script);
+    }
+    script.addEventListener("load", () =>
+      window.turnstile ? resolve(window.turnstile) : reject(),
+    );
+    script.addEventListener("error", () => reject());
+  });
+}
 type Errors = Partial<Record<"name" | "email" | "type" | "message", string>>;
 
 function validate(data: FormData): Errors {
@@ -29,6 +62,33 @@ export function ContactForm() {
   const [feedback, setFeedback] = useState<string>("");
   const doneRef = useRef<HTMLDivElement>(null);
   const restarted = useRef(false);
+  const captchaRef = useRef<HTMLDivElement>(null);
+  const widgetId = useRef<string | null>(null);
+  const done = status === "success";
+
+  // Le widget vit dans le formulaire : on le (re)crée quand le formulaire réapparaît.
+  useEffect(() => {
+    if (!turnstileSiteKey || done) return;
+    let cancelled = false;
+    loadTurnstile()
+      .then((turnstile) => {
+        const el = captchaRef.current;
+        if (cancelled || !el) return;
+        widgetId.current = turnstile.render(el, {
+          sitekey: turnstileSiteKey,
+          theme: "dark",
+          language: "fr",
+          appearance: "interaction-only",
+          size: el.clientWidth < 300 ? "compact" : "flexible",
+        });
+      })
+      .catch(() => {});
+    return () => {
+      cancelled = true;
+      if (widgetId.current) window.turnstile?.remove(widgetId.current);
+      widgetId.current = null;
+    };
+  }, [done]);
 
   // Le bouton cliqué disparaît à chaque changement d'écran : on replace le focus pour le clavier.
   useEffect(() => {
@@ -54,6 +114,12 @@ export function ContactForm() {
       return;
     }
 
+    if (turnstileSiteKey && !data.get("cf-turnstile-response")) {
+      setFeedback("Vérification anti-robot en cours. Réessayez dans un instant.");
+      setStatus("error");
+      return;
+    }
+
     setStatus("loading");
     try {
       const res = await fetch("/api/contact", {
@@ -71,6 +137,8 @@ export function ContactForm() {
         form.reset();
         return;
       }
+      // Un jeton Turnstile ne sert qu'une fois : on en redemande un pour le prochain essai.
+      if (widgetId.current) window.turnstile?.reset(widgetId.current);
       if (res.status === 422 && json.errors) setErrors(json.errors);
       setFeedback(json.message ?? "L'envoi a échoué. Réessayez plus tard.");
       setStatus("error");
@@ -183,6 +251,8 @@ export function ContactForm() {
         <label htmlFor="website">Ne pas remplir</label>
         <input id="website" name="website" type="text" tabIndex={-1} autoComplete="off" />
       </div>
+
+      {turnstileSiteKey && <div ref={captchaRef} className="form__captcha" />}
 
       {status === "error" && feedback && (
         <p className="form__alert" role="alert">
