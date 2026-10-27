@@ -22,7 +22,6 @@ Cocher au fur et à mesure. Ajouter ici tout nouveau chantier.
 - [ ] Inscrire le site dans Google Search Console et y soumettre `/sitemap.xml`
 - [ ] Valider le JSON-LD avec le test des résultats enrichis de Google une fois en ligne
 - [x] Confirmer la ville pour le SEO local (Antananarivo, `address` dans le JSON-LD)
-- [ ] Créer la fiche Google Business Profile
 - [x] Intégrer Poppins dans les images Open Graph
 
 ## Légal
@@ -45,8 +44,8 @@ Cocher au fur et à mesure. Ajouter ici tout nouveau chantier.
 - [x] Brancher le domaine ecreation-mg.com (et www) sur le Worker
 - [x] Rediriger www.ecreation-mg.com vers ecreation-mg.com (Redirect Rule Cloudflare)
 - [x] Activer « Always Use HTTPS » (SSL/TLS → Edge Certificates)
-- [ ] Vérifier que Workers Builds suit bien `mankafy/e-creation-portfolio` depuis le transfert du dépôt
-- [ ] Désactiver l'adresse `*.workers.dev` du Worker
+- [x] Vérifier que Workers Builds suit bien `mankafy/e-creation-portfolio` depuis le transfert du dépôt (dépôt rendu public)
+- [x] Désactiver l'adresse `*.workers.dev` du Worker (`workers_dev: false`)
 - [ ] Vérifier après déploiement : `curl -I` sur `/icon` et `/opengraph-image` (type `image/png`), `/sitemap.xml`, `/robots.txt`, 404
 
 - [x] Anti-robot Turnstile sur le formulaire (secret `TURNSTILE_SECRET_KEY` dans Cloudflare)
