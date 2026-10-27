@@ -1,8 +1,10 @@
-import { ArrowUpRight, Monitor, PenTool, Server, Smartphone, type LucideIcon } from "lucide-react";
+import Link from "next/link";
+import { Monitor, PenTool, Server, Smartphone, type LucideIcon } from "lucide-react";
 import { site } from "@/config/site";
 import type { ServiceIcon } from "@/config/site.types";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { CaseStudyLinkIcon } from "@/components/ui/CaseStudyLinkIcon";
 
 const icons: Record<ServiceIcon, LucideIcon> = {
   monitor: Monitor,
@@ -43,9 +45,10 @@ export function Services() {
                   </div>
                   <h3 className="service__title">{s.title}</h3>
                   <p className="muted">{s.description}</p>
-                  <a className="textlink" href="#contact">
-                    Discuter de ce besoin <ArrowUpRight size={15} aria-hidden="true" />
-                  </a>
+                  <Link className="textlink stretched-link" href={`/services/${s.slug}`}>
+                    En savoir plus <span className="sr-only">sur le service {s.title}</span>
+                    <CaseStudyLinkIcon />
+                  </Link>
                 </article>
               </Reveal>
             );

@@ -7,6 +7,8 @@ export const dynamic = "force-static";
 
 // Pas de lastModified : mieux vaut aucune date qu'une date fausse.
 export default function sitemap(): MetadataRoute.Sitemap {
+  const services = site.services.map((s) => ({ url: absoluteUrl(`/services/${s.slug}`) }));
+
   const projects = site.projects
     .filter((p) => p.caseStudy)
     .map((p) => ({ url: absoluteUrl(`/projets/${p.id}`) }));
@@ -15,5 +17,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     .filter((href): href is string => Boolean(href))
     .map((href) => ({ url: absoluteUrl(href) }));
 
-  return [{ url: absoluteUrl("/") }, ...projects, ...legal];
+  return [{ url: absoluteUrl("/") }, ...services, ...projects, ...legal];
 }

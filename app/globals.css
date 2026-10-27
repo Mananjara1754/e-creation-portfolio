@@ -1017,6 +1017,37 @@ html:not(.js) .header__toggle {
   text-underline-offset: 3px;
 }
 
+/* ---------- Pages de services ---------- */
+
+.service-projects {
+  margin-top: 1.75rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+}
+.service-projects__cell {
+  flex: 1 1 320px;
+  min-width: 0;
+  display: flex;
+}
+.service-project {
+  width: 100%;
+  padding: clamp(1.5rem, 3vw, 2rem);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+}
+.service-project .textlink {
+  margin-top: auto;
+}
+.service-links {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 2rem;
+}
+
 /* ---------- Étude de cas ---------- */
 
 .case-head {

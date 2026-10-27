@@ -50,32 +50,71 @@ export const site: SiteConfig = {
   services: [
     {
       id: "web",
+      slug: "creation-site-web",
       number: "01",
       icon: "monitor",
       title: "Développement Web",
       description:
         "Sites web, applications métier, plateformes SaaS et interfaces web responsives.",
+      heading: "Création de sites web et d'applications web à Madagascar",
+      intro:
+        "Basés à Antananarivo, nous concevons et développons des sites web, des applications métier et des plateformes SaaS adaptés à tous les écrans, pour des clients à Madagascar et partout ailleurs.",
+      includes: [
+        "Sites web",
+        "Applications métier",
+        "Plateformes SaaS",
+        "Interfaces web responsives",
+      ],
+      stackGroups: ["Frontend", "Backend", "Données", "Cloud"],
     },
     {
       id: "backend",
+      slug: "backend-api",
       number: "02",
       icon: "server",
       title: "Backend & API",
       description: "Architecture serveur, bases de données, API sécurisées et intégrations.",
+      heading: "Développement backend et API sur mesure",
+      intro:
+        "Nous concevons l'architecture serveur, les bases de données et les API qui font tourner vos applications web et mobiles, avec la sécurité et les intégrations dont elles ont besoin.",
+      includes: ["Architecture serveur", "Bases de données", "API sécurisées", "Intégrations"],
+      stackGroups: ["Backend", "Données", "Cloud"],
     },
     {
       id: "mobile",
+      slug: "application-mobile",
       number: "03",
       icon: "smartphone",
       title: "Développement Mobile",
       description: "Applications Android et iOS conçues pour une expérience fluide et cohérente.",
+      heading: "Développement d'applications mobiles Android et iOS",
+      intro:
+        "Nous créons des applications Android et iOS conçues pour une expérience fluide et cohérente, avec Flutter ou React Native : une seule base de code pour les deux plateformes.",
+      includes: [
+        "Applications Android",
+        "Applications iOS",
+        "Une expérience cohérente sur les deux plateformes",
+      ],
+      stackGroups: ["Mobile"],
     },
     {
       id: "uiux",
+      slug: "design-ui-ux",
       number: "04",
       icon: "pen-tool",
       title: "UI/UX Design",
       description: "Recherche, wireframes, maquettes haute fidélité, prototypes et design systems.",
+      heading: "Design UI/UX de sites web et d'applications",
+      intro:
+        "De la recherche utilisateur au design system, nous concevons des interfaces claires et des parcours simples, prêts à être développés.",
+      includes: [
+        "Recherche utilisateur",
+        "Wireframes",
+        "Maquettes haute fidélité",
+        "Prototypes",
+        "Design systems",
+      ],
+      stackGroups: ["Design"],
     },
   ],
   projects: [

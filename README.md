@@ -7,7 +7,7 @@ Site de l'agence **E-Creation**, basée à Antananarivo (Madagascar) : développ
 ## Le site
 
 - Page d'accueil one-page : présentation, services, projets, méthode, technologies, contact.
-- Une page d'étude de cas par projet (`/projets/[slug]`).
+- Une page par service (`/services/[slug]`) et une page d'étude de cas par projet (`/projets/[slug]`).
 - Formulaire de contact protégé : anti-robot Cloudflare Turnstile, limite d'envois par IP, validation côté serveur.
 - SEO : métadonnées par page, sitemap, `robots.txt`, images de partage générées, données structurées schema.org.
 - Accessibilité : navigation au clavier, focus visible, contrastes vérifiés, `prefers-reduced-motion`, contenu lisible sans JavaScript, responsive dès 320 px.
@@ -70,7 +70,7 @@ Règle du projet : n'afficher que des informations réelles et confirmées (coor
 ## Structure
 
 ```text
-app/                  pages (accueil, études de cas, confidentialité, 404), SEO, styles
+app/                  pages (accueil, services, études de cas, confidentialité, 404), SEO, styles
 components/
   layout/             en-tête, pied de page
   sections/           une section de l'accueil par fichier

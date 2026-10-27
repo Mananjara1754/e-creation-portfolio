@@ -15,6 +15,7 @@ Site vitrine one-page (Next.js 15 App Router, React 19, TypeScript). Tout en fra
 
 - Contenu : `config/site.ts` (types : `config/site.types.ts`). Les composants lisent `site` directement.
 - Sections : `components/sections/*`, ordre dans `app/page.tsx`.
+- Pages de services : `app/services/[slug]` (contenu dans `site.services` : `heading`, `intro`, `includes`, `stackGroups`), liées depuis les cartes de l'accueil.
 - Styles : `app/globals.css` (tokens dans `:root`, classes BEM, un bloc commenté par section).
 - SEO : `lib/seo.ts` (URL de base, titre, Open Graph commun), `app/robots.ts`, `app/sitemap.ts`, icônes et `opengraph-image.tsx` générés (`lib/og.tsx`, Poppins lue depuis la dépendance de dev `@fontsource/poppins`), JSON-LD via `components/seo/JsonLd.tsx`. Toute nouvelle page : `alternates.canonical` + `openGraph` (avec `...baseOpenGraph`) et ajout au sitemap.
 - Formulaire : `components/sections/ContactForm.tsx` + `worker/contact.ts` (Worker Cloudflare, envoi via Resend, anti-robot Cloudflare Turnstile vérifié côté serveur si `TURNSTILE_SECRET_KEY` est défini). Garder la validation client/serveur cohérente.
