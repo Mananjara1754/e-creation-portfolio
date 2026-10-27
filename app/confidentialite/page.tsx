@@ -34,7 +34,7 @@ export default function PrivacyPage() {
         <section className="section">
           <div className="container legal">
             <h1 className="h1 case-title">{title}</h1>
-            <p className="lead">Dernière mise à jour : 26 octobre 2026.</p>
+            <p className="lead">Dernière mise à jour : 27 octobre 2026.</p>
 
             <h2 className="h3">Qui est responsable</h2>
             <p>
@@ -66,21 +66,11 @@ export default function PrivacyPage() {
             </p>
 
             <h2 className="h3">Qui les reçoit</h2>
-            <ul className="legal__list">
-              <li>{site.companyName}, destinataire de votre message.</li>
-              <li>
-                Resend, service qui achemine le message du formulaire jusqu&apos;à notre boîte mail.
-              </li>
-              <li>OVHcloud, qui héberge notre messagerie.</li>
-              <li>
-                Cloudflare, qui héberge le site et traite les données techniques de connexion
-                nécessaires à son fonctionnement et à sa sécurité, dont la vérification anti-robot
-                du formulaire (Turnstile, sans cookie).
-              </li>
-            </ul>
             <p>
-              Ces prestataires peuvent être situés hors de Madagascar, notamment en Europe et aux
-              États-Unis.
+              {site.companyName} uniquement, ainsi que nos prestataires techniques (hébergement du
+              site, acheminement et stockage des e-mails, protection anti-robot), qui
+              n&apos;agissent que pour notre compte. Certains sont situés hors de Madagascar,
+              notamment en Europe et aux États-Unis.
             </p>
 
             <h2 className="h3">Combien de temps</h2>
