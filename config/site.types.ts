@@ -9,10 +9,18 @@ export type ServiceIcon = "monitor" | "server" | "smartphone" | "pen-tool";
 
 export interface Service {
   id: string;
+  /** URL de la page dédiée : /services/{slug}. */
+  slug: string;
   number: string;
   title: string;
   description: string;
   icon: ServiceIcon;
+  /** h1 de la page dédiée (mots-clés recherchés par les clients). */
+  heading: string;
+  intro: string;
+  includes: string[];
+  /** Titres des groupes de `stack` liés à ce service. */
+  stackGroups: string[];
 }
 
 export type ProjectVisual = "dashboard" | "mobile" | "shop" | "chat";

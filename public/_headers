@@ -20,3 +20,5 @@
   Content-Type: image/png
 /projets/*/opengraph-image
   Content-Type: image/png
+/services/*/opengraph-image
+  Content-Type: image/png

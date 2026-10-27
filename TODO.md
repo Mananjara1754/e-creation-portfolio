@@ -19,6 +19,7 @@ Cocher au fur et à mesure. Ajouter ici tout nouveau chantier.
 - [x] Favicon / icône (`app/icon.tsx` ou fichier)
 - [x] Image Open Graph 1200×630 (`app/opengraph-image.tsx` ou visuel fourni)
 - [x] Données structurées JSON-LD `Organization` (uniquement des infos confirmées)
+- [x] Une page par service (`/services/[slug]`), à enrichir avec du contenu réel (types de projets, délais)
 - [ ] Inscrire le site dans Google Search Console et y soumettre `/sitemap.xml`
 - [ ] Valider le JSON-LD avec le test des résultats enrichis de Google une fois en ligne
 - [x] Confirmer la ville pour le SEO local (Antananarivo, `address` dans le JSON-LD)
