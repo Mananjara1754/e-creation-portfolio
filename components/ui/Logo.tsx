@@ -5,7 +5,7 @@ export function Logo() {
   return (
     <Link href="/#accueil" className="logo" aria-label={`${site.companyName}, retour à l'accueil`}>
       <span className="logo__mark" aria-hidden="true">
-        <svg width="22" height="22" viewBox="0 0 48 48" fill="none">
+        <svg width="26" height="26" viewBox="0 0 48 48" fill="none">
           <polygon
             points="31.1,3 33.3,7.6 34.2,12.3 34.7,13.5 32.4,14.5 31.5,22.5 29.9,27.5 28.3,32.1 26.7,37.2 24.3,44.2 18.8,46 14.8,41.5 14.3,38.9 13.6,33.9 16.3,29.3 16.6,26 15.4,22.2 16.6,16.4 22.2,14.8 25.5,11.3 27.9,7.6 30.3,4.4"
             fill="var(--color-accent)"
