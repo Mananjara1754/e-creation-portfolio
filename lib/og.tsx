@@ -2,7 +2,7 @@ import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 import { ImageResponse } from "next/og";
 import { site } from "@/config/site";
-import { brandColors, logoPath } from "@/lib/seo";
+import { brandColors } from "@/lib/seo";
 
 export const ogSize = { width: 1200, height: 630 };
 
@@ -20,6 +20,7 @@ function loadPoppins() {
   );
 }
 
+/** Île stylisée du logo, simplifiée (sans le détail en rotation, non supporté au rendu). */
 export function LogoMark({ size }: { size: number }) {
   return (
     <div
@@ -27,23 +28,30 @@ export function LogoMark({ size }: { size: number }) {
         width: size,
         height: size,
         borderRadius: size * 0.26,
-        background: brandColors.accent,
+        background: brandColors.bg,
+        border: `1px solid ${brandColors.border}`,
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
       }}
     >
-      <svg
-        width={size * 0.53}
-        height={size * 0.53}
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke={brandColors.onAccent}
-        strokeWidth="2.6"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <path d={logoPath} />
+      <svg width={size * 0.6} height={size * 0.6} viewBox="0 0 48 48" fill="none">
+        <polygon
+          points="31.1,3 33.3,7.6 34.2,12.3 34.7,13.5 32.4,14.5 31.5,22.5 29.9,27.5 28.3,32.1 26.7,37.2 24.3,44.2 18.8,46 14.8,41.5 14.3,38.9 13.6,33.9 16.3,29.3 16.6,26 15.4,22.2 16.6,16.4 22.2,14.8 25.5,11.3 27.9,7.6 30.3,4.4"
+          fill={brandColors.accent}
+        />
+        <polygon
+          points="25.5,11.3 27.9,7.6 30.3,4.4 31.1,3 28,12.5"
+          fill={brandColors.accentDim}
+        />
+        <polygon points="28,12.5 32.4,14.5 31.5,22.5 25,26" fill={brandColors.accentDim} />
+        <polygon points="16.3,29.3 16.6,26 15.4,22.2 16.6,16.4 25,26" fill={brandColors.accentDim} />
+        <polygon
+          points="21.5,38 26.7,37.2 24.3,44.2 18.8,46 14.8,41.5 14.3,38.9"
+          fill={brandColors.accentDim}
+        />
+        <circle cx="26" cy="25" r="5.2" fill="none" stroke={brandColors.accent2} strokeWidth="1.4" />
+        <circle cx="26" cy="25" r="2.4" fill={brandColors.accent2} />
       </svg>
     </div>
   );

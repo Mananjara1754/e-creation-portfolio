@@ -9,8 +9,9 @@
   --color-surface: #181c20;
   --color-text: #f5f5f0; /* blanc cassé */
   --color-text-muted: #a0a6ad;
-  --color-accent: #c7f36b; /* vert électrique : seule variable à changer */
-  --color-accent-dim: #5a6b2f;
+  --color-accent: #2dd4b0; /* vert du logo */
+  --color-accent-dim: #139e86; /* vert du logo, assombri */
+  --color-accent-2: #ffc83d; /* jaune du logo, touche secondaire */
   --color-on-accent: #0b0d0f;
   --color-border: #2b3036;
   --color-border-strong: #646b73; /* contour des champs : contraste ≥ 3:1 */
@@ -337,8 +338,8 @@ textarea {
   width: 34px;
   height: 34px;
   border-radius: 9px;
-  background: var(--color-accent);
-  color: var(--color-on-accent);
+  background: var(--color-bg-alt);
+  border: 1px solid var(--color-border);
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -474,7 +475,7 @@ html:not(.js) .header__toggle {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: var(--color-accent);
+  background: var(--color-accent-2);
 }
 .hero__text .h1 {
   font-size: clamp(2rem, 3.8vw, 3.75rem); /* titre long : reste sur ~5 lignes en bureau */

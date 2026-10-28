@@ -33,10 +33,9 @@ export const brandColors = {
   surface: "#181c20",
   text: "#f5f5f0",
   textMuted: "#a0a6ad",
-  accent: "#c7f36b",
+  accent: "#2dd4b0",
+  accentDim: "#139e86",
+  accent2: "#ffc83d",
   onAccent: "#0b0d0f",
   border: "#2b3036",
 };
-
-/** Tracé du logo (même que components/ui/Logo.tsx). */
-export const logoPath = "M18 5H7v14h11M7 12h9";
