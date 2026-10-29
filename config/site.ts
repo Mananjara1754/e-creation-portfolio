@@ -31,7 +31,7 @@ export const site: SiteConfig = {
   socials: [
     {
       label: "Facebook",
-      href: "https://www.facebook.com/profile.php?id=61595643017340",
+      href: "https://www.facebook.com/ecreationmg",
       name: "E-Creation MG",
       icon: "facebook",
     },
