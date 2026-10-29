@@ -38,7 +38,8 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           }}
         />
       </head>
-      <body>{children}</body>
+      {/* id : cible du bouton "revenir en haut" (components/ui/BackToTop.tsx). */}
+      <body id="haut">{children}</body>
     </html>
   );
 }

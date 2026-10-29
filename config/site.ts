@@ -27,8 +27,15 @@ export const site: SiteConfig = {
     "UI/UX Design",
     "Autre",
   ],
-  // À renseigner : { label: "LinkedIn", href: "https://..." }
-  socials: [],
+  // Autres réseaux (LinkedIn...) : à ajouter quand ils seront fournis
+  socials: [
+    {
+      label: "Facebook",
+      href: "https://www.facebook.com/profile.php?id=61595643017340",
+      name: "E-Creation MG",
+      icon: "facebook",
+    },
+  ],
   // À renseigner uniquement si les pages existent
   legal: { privacyHref: "/confidentialite" },
   principles: [

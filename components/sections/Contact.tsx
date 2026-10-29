@@ -1,16 +1,58 @@
+import type { ReactNode } from "react";
+import { ArrowUpRight, Mail, MapPin, MessageCircle } from "lucide-react";
 import { site } from "@/config/site";
+import { SocialIcon } from "@/components/ui/SocialIcon";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { ContactForm } from "@/components/sections/ContactForm";
 
-function Row({ label, children }: { label: string; children: React.ReactNode }) {
+interface ChannelProps {
+  icon: ReactNode;
+  label: string;
+  children: ReactNode;
+  href?: string;
+  /** Lien externe : nouvel onglet. */
+  external?: boolean;
+}
+
+/** Une ligne de coordonnées ; cliquable sur toute sa surface quand elle a un lien. */
+function Channel({ icon, label, children, href, external }: ChannelProps) {
+  const content = (
+    <>
+      <span className="contact__icon" aria-hidden="true">
+        {icon}
+      </span>
+      <span className="contact__text">
+        <span className="contact__label">{label}</span>
+        <span className="contact__value">{children}</span>
+      </span>
+      {href && <ArrowUpRight size={16} aria-hidden="true" className="contact__arrow" />}
+    </>
+  );
   return (
-    <div className="contact__row">
-      <span className="contact__label">{label}</span>
-      <span className="contact__value">{children}</span>
-    </div>
+    <li>
+      {href ? (
+        <a
+          className="contact__channel contact__channel--link"
+          href={href}
+          {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+        >
+          {content}
+          {external && <span className="sr-only">(nouvel onglet)</span>}
+        </a>
+      ) : (
+        <div className="contact__channel">{content}</div>
+      )}
+    </li>
   );
 }
+
+// Déroulé repris de la FAQ validée (devis gratuit après un échange).
+const nextSteps = [
+  "Vous décrivez votre projet",
+  "Nous vous répondons pour en discuter",
+  "Vous recevez un devis gratuit",
+];
 
 export function Contact() {
   const { email, whatsapp } = site.contact;
@@ -27,61 +69,72 @@ export function Contact() {
             Décrivez votre besoin en quelques lignes. Nous revenons vers vous pour en discuter.
           </p>
 
-          <div className="contact__rows">
-            {site.location && (
-              <Row label="Basés à">
-                {site.location.city}, {site.location.country} · clients partout, à distance
-              </Row>
-            )}
+          <ul className="contact__channels">
             {email ? (
-              <Row label="E-mail">
-                <a className="navlink" href={`mailto:${email}`}>
-                  {email}
-                </a>
-              </Row>
+              <Channel icon={<Mail size={18} />} label="E-mail" href={`mailto:${email}`}>
+                {email}
+              </Channel>
             ) : (
               demo && (
-                <Row label="E-mail">
+                <Channel icon={<Mail size={18} />} label="E-mail">
                   <span className="muted">[adresse à renseigner]</span>
-                </Row>
+                </Channel>
               )
             )}
             {whatsapp ? (
-              <Row label="WhatsApp">
-                <a
-                  className="navlink"
-                  href={`https://wa.me/${whatsapp}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Nous écrire sur WhatsApp <span className="sr-only">(nouvel onglet)</span>
-                </a>
-              </Row>
+              <Channel
+                icon={<MessageCircle size={18} />}
+                label="WhatsApp"
+                href={`https://wa.me/${whatsapp}`}
+                external
+              >
+                Nous écrire sur WhatsApp
+              </Channel>
             ) : (
               demo && (
-                <Row label="WhatsApp">
+                <Channel icon={<MessageCircle size={18} />} label="WhatsApp">
                   <span className="muted">[numéro à renseigner]</span>
-                </Row>
+                </Channel>
               )
             )}
-            {site.socials.length > 0 ? (
-              <Row label="Réseaux">
-                {site.socials.map((s, i) => (
-                  <span key={s.href}>
-                    {i > 0 && " · "}
-                    <a className="navlink" href={s.href} target="_blank" rel="noopener noreferrer">
-                      {s.label} <span className="sr-only">(nouvel onglet)</span>
-                    </a>
+            {site.socials.length > 0
+              ? site.socials.map((s) => (
+                  <Channel
+                    key={s.href}
+                    icon={
+                      s.icon ? <SocialIcon name={s.icon} size={18} /> : <ArrowUpRight size={18} />
+                    }
+                    label={s.label}
+                    href={s.href}
+                    external
+                  >
+                    {s.name ?? site.companyName}
+                  </Channel>
+                ))
+              : demo && (
+                  <Channel icon={<ArrowUpRight size={18} />} label="Réseaux">
+                    <span className="muted">[liens à renseigner]</span>
+                  </Channel>
+                )}
+            {site.location && (
+              <Channel icon={<MapPin size={18} />} label="Basés à">
+                {site.location.city}, {site.location.country} · clients partout, à distance
+              </Channel>
+            )}
+          </ul>
+
+          <div className="contact__next">
+            <h3 className="contact__next-title">Comment ça se passe</h3>
+            <ol className="contact__steps">
+              {nextSteps.map((step, i) => (
+                <li key={step} className="contact__step">
+                  <span className="contact__step-num" aria-hidden="true">
+                    {i + 1}
                   </span>
-                ))}
-              </Row>
-            ) : (
-              demo && (
-                <Row label="Réseaux">
-                  <span className="muted">[liens à renseigner]</span>
-                </Row>
-              )
-            )}
+                  {step}
+                </li>
+              ))}
+            </ol>
           </div>
         </Reveal>
 

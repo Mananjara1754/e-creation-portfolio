@@ -235,7 +235,7 @@ export function ContactForm() {
           id="message"
           name="message"
           rows={5}
-          placeholder="Parlez-nous de votre projet"
+          placeholder="Votre projet en quelques lignes : objectif, fonctionnalités clés, délai souhaité…"
           required
           {...field("message")}
         />

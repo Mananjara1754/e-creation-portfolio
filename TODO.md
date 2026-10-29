@@ -6,7 +6,8 @@ Cocher au fur et à mesure. Ajouter ici tout nouveau chantier.
 
 - [x] Renseigner l'e-mail réel (`contact@ecreation-mg.com`, boîte Zimbra OVH)
 - [ ] Renseigner le WhatsApp (`contact.whatsapp`)
-- [ ] Ajouter les réseaux sociaux (`socials`)
+- [x] Ajouter la page Facebook (`socials`)
+- [ ] Ajouter les autres réseaux (LinkedIn…) quand ils existent
 - [x] Remplacer les projets de démo par de vraies réalisations (technologies, `caseStudyHref` si page)
 - [x] Passer `demoMode` à `false`
 
