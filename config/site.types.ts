@@ -5,6 +5,17 @@ export interface NavLink {
   href: string;
 }
 
+export interface FaqItem {
+  question: string;
+  answer: string;
+}
+
+export interface ServiceUseCase {
+  label: string;
+  /** `id` d'un projet réalisé : lien vers son étude de cas. */
+  projectId?: string;
+}
+
 export type ServiceIcon = "monitor" | "server" | "smartphone" | "pen-tool";
 
 export interface Service {
@@ -21,6 +32,11 @@ export interface Service {
   includes: string[];
   /** Titres des groupes de `stack` liés à ce service. */
   stackGroups: string[];
+  /** Section "Pour quels projets ?" de la page dédiée. */
+  audience: string;
+  useCases: ServiceUseCase[];
+  /** Questions propres à ce service, affichées avant celles de `faq`. */
+  faq?: FaqItem[];
 }
 
 export type ProjectVisual = "dashboard" | "mobile" | "shop" | "chat";
@@ -95,4 +111,6 @@ export interface SiteConfig {
   projects: Project[];
   stack: StackGroup[];
   process: ProcessStep[];
+  /** Questions communes, affichées sur chaque page de service. Réponses validées par E-Creation. */
+  faq: FaqItem[];
 }

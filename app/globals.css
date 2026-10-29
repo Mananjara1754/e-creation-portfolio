@@ -1040,6 +1040,46 @@ html:not(.js) .header__toggle {
   flex-wrap: wrap;
   gap: 1rem 2rem;
 }
+.service-audience {
+  margin-top: 0.875rem;
+  max-width: 760px;
+}
+.faq {
+  margin-top: 1.75rem;
+  max-width: 760px;
+  border-top: 1px solid var(--color-border);
+}
+.faq__item {
+  border-bottom: 1px solid var(--color-border);
+}
+.faq__question {
+  padding: 1.25rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  list-style: none;
+}
+.faq__question::-webkit-details-marker {
+  display: none;
+}
+.faq__question:hover {
+  color: var(--color-accent);
+}
+.faq__icon {
+  flex: none;
+  color: var(--color-accent);
+  transition: transform var(--t-hover) var(--ease);
+}
+.faq__item[open] .faq__icon {
+  transform: rotate(180deg);
+}
+.faq__answer {
+  padding-bottom: 1.25rem;
+  line-height: 1.6;
+}
 
 /* ---------- Étude de cas ---------- */
 

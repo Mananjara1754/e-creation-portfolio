@@ -20,6 +20,9 @@ Cocher au fur et à mesure. Ajouter ici tout nouveau chantier.
 - [x] Image Open Graph 1200×630 (`app/opengraph-image.tsx` ou visuel fourni)
 - [x] Données structurées JSON-LD `Organization` (uniquement des infos confirmées)
 - [x] Une page par service (`/services/[slug]`), à enrichir avec du contenu réel (types de projets, délais)
+- [x] FAQ sur les pages de services (`site.faq` + `faq` par service, JSON-LD `FAQPage`)
+- [ ] Préciser la FAQ : durée de la garantie de corrections, hébergement, anglais, moyens de paiement
+- [x] Étoffer chaque page de service : section « Pour quels projets ? » (`audience`, `useCases`)
 - [ ] Inscrire le site dans Google Search Console et y soumettre `/sitemap.xml`
 - [ ] Valider le JSON-LD avec le test des résultats enrichis de Google une fois en ligne
 - [x] Confirmer la ville pour le SEO local (Antananarivo, `address` dans le JSON-LD)

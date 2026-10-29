@@ -10,7 +10,7 @@ export function Stack() {
       <div className="container stack">
         <Reveal className="stack__intro">
           <SectionHeading label="NOTRE STACK" id="stack-title">
-            Les bons outils pour les bons besoins.
+            Nos technologies web et mobile, choisies pour chaque besoin.
           </SectionHeading>
           <p className="muted">
             Technologies déclarées par {site.companyName}. D&apos;autres pourront être ajoutées au

@@ -12,7 +12,7 @@ export function Approach() {
       <div className="container">
         <Reveal className="approach__intro">
           <SectionHeading label="NOTRE APPROCHE" id="approach-title">
-            Du concept à la mise en production.
+            Notre méthode, du concept à la mise en production.
           </SectionHeading>
           <p className="lead">
             Nous réunissons développement logiciel et design produit. De la première idée à la mise

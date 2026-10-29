@@ -55,8 +55,7 @@ function getStructuredData(slug: string, project: Project, caseStudy: ProjectCas
         "@type": "BreadcrumbList",
         itemListElement: [
           { "@type": "ListItem", position: 1, name: "Accueil", item: absoluteUrl("/") },
-          { "@type": "ListItem", position: 2, name: "Projets", item: absoluteUrl("/#projets") },
-          { "@type": "ListItem", position: 3, name: project.name, item: url },
+          { "@type": "ListItem", position: 2, name: project.name, item: url },
         ],
       },
       {

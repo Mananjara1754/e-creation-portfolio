@@ -24,7 +24,7 @@ export function Services() {
         <Reveal className="split-head">
           <div className="split-head__title">
             <SectionHeading label="NOS EXPERTISES" id="services-title">
-              Tout ce qu&apos;il faut pour donner vie à votre produit digital.
+              Développement web, mobile, backend et design UI/UX sur mesure.
             </SectionHeading>
           </div>
           <p className="muted split-head__text">
