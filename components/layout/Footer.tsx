@@ -1,7 +1,9 @@
 import Link from "next/link";
 import { site } from "@/config/site";
 import { Logo } from "@/components/ui/Logo";
+import { SocialIcon } from "@/components/ui/SocialIcon";
 import { CurrentYear } from "@/components/ui/CurrentYear";
+import { BackToTop } from "@/components/ui/BackToTop";
 
 export function Footer() {
   const { email, whatsapp } = site.contact;
@@ -49,11 +51,12 @@ export function Footer() {
               {site.socials.map((s) => (
                 <a
                   key={s.href}
-                  className="navlink"
+                  className="navlink social-link"
                   href={s.href}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
+                  {s.icon && <SocialIcon name={s.icon} />}
                   {s.label} <span className="sr-only">(nouvel onglet)</span>
                 </a>
               ))}
@@ -75,6 +78,7 @@ export function Footer() {
           )}
         </div>
       </div>
+      <BackToTop />
     </footer>
   );
 }

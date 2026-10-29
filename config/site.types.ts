@@ -87,9 +87,15 @@ export interface Principle {
   description: string;
 }
 
+export type SocialIcon = "facebook";
+
 export interface SocialLink {
+  /** Nom du réseau : "Facebook"... */
   label: string;
   href: string;
+  /** Nom du compte sur le réseau, s'il diffère de `companyName`. */
+  name?: string;
+  icon?: SocialIcon;
 }
 
 export interface SiteConfig {
