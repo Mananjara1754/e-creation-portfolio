@@ -63,7 +63,7 @@ export function Projects() {
       <div className="container">
         <Reveal className="projects__head">
           <SectionHeading label="SÉLECTION DE PROJETS" id="projects-title">
-            Des idées devenues des produits concrets.
+            Sites web, applications et API : des idées devenues produits.
           </SectionHeading>
           <p className="muted projects__intro">
             Découvrez quelques exemples de notre approche du design et du développement, à travers

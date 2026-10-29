@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, ArrowUpRight, Check } from "lucide-react";
+import { ArrowLeft, ArrowUpRight, Check, ChevronDown } from "lucide-react";
 import { site } from "@/config/site";
-import type { Service } from "@/config/site.types";
+import type { FaqItem, Service } from "@/config/site.types";
 import { absoluteUrl, baseOpenGraph } from "@/lib/seo";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { Header } from "@/components/layout/Header";
@@ -44,6 +44,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   };
 }
 
+function getFaq(service: Service): FaqItem[] {
+  return [...(service.faq ?? []), ...site.faq];
+}
+
 function getStructuredData(service: Service) {
   const url = absoluteUrl(`/services/${service.slug}`);
   return {
@@ -53,8 +57,7 @@ function getStructuredData(service: Service) {
         "@type": "BreadcrumbList",
         itemListElement: [
           { "@type": "ListItem", position: 1, name: "Accueil", item: absoluteUrl("/") },
-          { "@type": "ListItem", position: 2, name: "Services", item: absoluteUrl("/#services") },
-          { "@type": "ListItem", position: 3, name: service.title, item: url },
+          { "@type": "ListItem", position: 2, name: service.title, item: url },
         ],
       },
       {
@@ -64,6 +67,14 @@ function getStructuredData(service: Service) {
         description: service.intro,
         url,
         provider: { "@id": absoluteUrl("/#organisation") },
+      },
+      {
+        "@type": "FAQPage",
+        mainEntity: getFaq(service).map((item) => ({
+          "@type": "Question",
+          name: item.question,
+          acceptedAnswer: { "@type": "Answer", text: item.answer },
+        })),
       },
     ],
   };
@@ -79,6 +90,7 @@ export default async function ServicePage({ params }: PageProps) {
     (p) => p.caseStudyHref && p.services.includes(service.title),
   );
   const others = site.services.filter((s) => s !== service);
+  const faq = getFaq(service);
 
   return (
     <>
@@ -120,6 +132,38 @@ export default async function ServicePage({ params }: PageProps) {
                   <span>{item}</span>
                 </Reveal>
               ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="section section--border">
+          <div className="container">
+            <Reveal>
+              <h2 className="h3">Pour quels projets ?</h2>
+              <p className="muted service-audience">{service.audience}</p>
+            </Reveal>
+            <div className="case-features">
+              {service.useCases.map((useCase, i) => {
+                const project = site.projects.find((p) => p.id === useCase.projectId);
+                return (
+                  <Reveal key={useCase.label} delay={i * 60} className="case-features__item">
+                    <Check size={16} aria-hidden="true" className="accent" />
+                    <span>
+                      {useCase.label}
+                      {project?.caseStudyHref && (
+                        <>
+                          {" "}
+                          (exemple :{" "}
+                          <Link className="textlink" href={project.caseStudyHref}>
+                            {project.name}
+                          </Link>
+                          )
+                        </>
+                      )}
+                    </span>
+                  </Reveal>
+                );
+              })}
             </div>
           </div>
         </section>
@@ -189,6 +233,25 @@ export default async function ServicePage({ params }: PageProps) {
             </div>
           </section>
         )}
+
+        <section className="section section--alt section--border">
+          <div className="container">
+            <Reveal>
+              <h2 className="h3">Questions fréquentes</h2>
+              <div className="faq">
+                {faq.map((item) => (
+                  <details key={item.question} className="faq__item">
+                    <summary className="faq__question">
+                      {item.question}
+                      <ChevronDown size={18} aria-hidden="true" className="faq__icon" />
+                    </summary>
+                    <p className="faq__answer muted">{item.answer}</p>
+                  </details>
+                ))}
+              </div>
+            </Reveal>
+          </div>
+        </section>
 
         <section className="section section--border">
           <div className="container">

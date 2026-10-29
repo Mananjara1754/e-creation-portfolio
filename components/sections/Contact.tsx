@@ -21,7 +21,7 @@ export function Contact() {
       <div className="container contact">
         <Reveal className="contact__intro">
           <SectionHeading label="CONTACT" id="contact-title">
-            Parlons de votre projet.
+            Parlons de votre projet web ou mobile.
           </SectionHeading>
           <p className="muted">
             Décrivez votre besoin en quelques lignes. Nous revenons vers vous pour en discuter.

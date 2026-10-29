@@ -66,6 +66,17 @@ export const site: SiteConfig = {
         "Interfaces web responsives",
       ],
       stackGroups: ["Frontend", "Backend", "Données", "Cloud"],
+      audience:
+        "Nous accompagnons les entreprises, les startups et les porteurs de projet qui ont besoin d'un site pour se présenter ou d'un outil web pour mieux travailler.",
+      useCases: [
+        { label: "Sites vitrines pour présenter une activité et recevoir des demandes" },
+        { label: "Plateformes e-commerce et marketplaces", projectId: "marketplace-mean" },
+        {
+          label: "Outils de gestion métier : devis, suivi de chantier, back-office",
+          projectId: "btp-construction",
+        },
+        { label: "Plateformes SaaS avec espace client" },
+      ],
     },
     {
       id: "backend",
@@ -74,11 +85,17 @@ export const site: SiteConfig = {
       icon: "server",
       title: "Backend & API",
       description: "Architecture serveur, bases de données, API sécurisées et intégrations.",
-      heading: "Développement backend et API sur mesure",
+      heading: "Développement backend et API sur mesure à Madagascar",
       intro:
-        "Nous concevons l'architecture serveur, les bases de données et les API qui font tourner vos applications web et mobiles, avec la sécurité et les intégrations dont elles ont besoin.",
+        "Depuis Antananarivo, nous concevons l'architecture serveur, les bases de données et les API qui font tourner vos applications web et mobiles, avec la sécurité et les intégrations dont elles ont besoin.",
       includes: ["Architecture serveur", "Bases de données", "API sécurisées", "Intégrations"],
       stackGroups: ["Backend", "Données", "Cloud"],
+      audience:
+        "Pour les équipes qui ont déjà une interface, ou un projet web ou mobile, et qui ont besoin d'une base solide derrière.",
+      useCases: [
+        { label: "API pour applications web et mobiles" },
+        { label: "Import et traitement de données", projectId: "badge-generator" },
+      ],
     },
     {
       id: "mobile",
@@ -87,15 +104,28 @@ export const site: SiteConfig = {
       icon: "smartphone",
       title: "Développement Mobile",
       description: "Applications Android et iOS conçues pour une expérience fluide et cohérente.",
-      heading: "Développement d'applications mobiles Android et iOS",
+      heading: "Applications mobiles Android et iOS à Madagascar",
       intro:
-        "Nous créons des applications Android et iOS conçues pour une expérience fluide et cohérente, avec Flutter ou React Native : une seule base de code pour les deux plateformes.",
+        "Basés à Antananarivo, nous créons des applications Android et iOS conçues pour une expérience fluide et cohérente, avec Flutter ou React Native : une seule base de code pour les deux plateformes.",
       includes: [
         "Applications Android",
         "Applications iOS",
         "Une expérience cohérente sur les deux plateformes",
       ],
       stackGroups: ["Mobile"],
+      audience:
+        "Pour les entreprises et les startups qui veulent être présentes sur le téléphone de leurs clients, sur Android et iOS.",
+      useCases: [
+        { label: "Applications pour les clients d'une entreprise : commande, réservation, suivi" },
+        { label: "Version mobile d'une plateforme web existante" },
+      ],
+      faq: [
+        {
+          question: "Publiez-vous les applications sur les stores ?",
+          answer:
+            "Oui, nous préparons et publions votre application sur l'App Store et Google Play. Les comptes développeur sont créés à votre nom.",
+        },
+      ],
     },
     {
       id: "uiux",
@@ -104,9 +134,9 @@ export const site: SiteConfig = {
       icon: "pen-tool",
       title: "UI/UX Design",
       description: "Recherche, wireframes, maquettes haute fidélité, prototypes et design systems.",
-      heading: "Design UI/UX de sites web et d'applications",
+      heading: "Design UI/UX de sites et d'applications à Madagascar",
       intro:
-        "De la recherche utilisateur au design system, nous concevons des interfaces claires et des parcours simples, prêts à être développés.",
+        "De la recherche utilisateur au design system, nous concevons depuis Antananarivo des interfaces claires et des parcours simples, prêts à être développés.",
       includes: [
         "Recherche utilisateur",
         "Wireframes",
@@ -115,6 +145,21 @@ export const site: SiteConfig = {
         "Design systems",
       ],
       stackGroups: ["Design"],
+      audience:
+        "Pour les projets qui démarrent et ont besoin d'une direction claire, ou les produits existants dont l'interface freine les utilisateurs.",
+      useCases: [
+        { label: "Conception d'un nouveau produit, des parcours aux maquettes" },
+        { label: "Refonte d'une interface existante" },
+        { label: "Design system pour garder une interface cohérente" },
+        { label: "Présentations interactives", projectId: "rage-room-pitch" },
+      ],
+      faq: [
+        {
+          question: "Faites-vous du design sans le développement ?",
+          answer:
+            "Oui. Nous pouvons livrer uniquement les maquettes et le design system dans Figma, prêts à être développés par votre équipe.",
+        },
+      ],
     },
   ],
   projects: [
@@ -353,6 +398,33 @@ export const site: SiteConfig = {
       title: "Livrer & améliorer",
       description:
         "Nous validons le produit, préparons sa mise en ligne et identifions les améliorations pertinentes.",
+    },
+  ],
+  faq: [
+    {
+      question: "Combien de temps prend un projet ?",
+      answer:
+        "Cela dépend du périmètre. À titre indicatif : 2 à 4 semaines pour un site vitrine, 2 à 4 mois pour une application web ou mobile sur mesure. Un planning précis est fixé dans le devis, après un premier échange sur votre besoin.",
+    },
+    {
+      question: "Combien coûte un projet ?",
+      answer:
+        "Chaque projet fait l'objet d'un devis gratuit et détaillé, établi après un échange sur vos besoins. Le prix dépend des fonctionnalités, du nombre d'écrans et des intégrations nécessaires.",
+    },
+    {
+      question: "Que se passe-t-il après la livraison ?",
+      answer:
+        "Nous accompagnons la mise en ligne et corrigeons les éventuels bugs après la livraison. Un contrat de maintenance peut ensuite être mis en place pour les mises à jour, la sécurité et les évolutions.",
+    },
+    {
+      question: "Travaillez-vous avec des clients hors de Madagascar ?",
+      answer:
+        "Oui, nous pouvons travailler entièrement à distance : échanges en français, points réguliers en visio et suivi du projet en ligne, où que vous soyez.",
+    },
+    {
+      question: "Serai-je propriétaire du code ?",
+      answer:
+        "Oui. À la fin du projet, le code source et les accès vous sont remis : votre application vous appartient.",
     },
   ],
 };

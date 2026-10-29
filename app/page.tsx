@@ -19,12 +19,14 @@ export const metadata: Metadata = {
 };
 
 // Uniquement des informations confirmées (pas d'adresse ni de contact tant qu'ils sont vides).
+// ProfessionalService (sous-type de LocalBusiness) : aide la recherche locale.
+// Pas d'areaServed : l'agence travaille avec des clients partout.
 const organizationId = absoluteUrl("/#organisation");
 const structuredData = {
   "@context": "https://schema.org",
   "@graph": [
     {
-      "@type": "Organization",
+      "@type": "ProfessionalService",
       "@id": organizationId,
       name: site.companyName,
       url: siteUrl,

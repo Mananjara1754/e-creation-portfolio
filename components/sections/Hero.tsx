@@ -14,8 +14,8 @@ export function Hero() {
               Agence de développement digital
             </span>
             <h1 className="h1" id="hero-title">
-              Sites web et applications mobiles qui transforment vos idées en{" "}
-              <span className="accent">expériences digitales</span> performantes.
+              Création de sites web et d&apos;applications mobiles à Madagascar, pour transformer
+              vos idées en <span className="accent">produits digitaux</span> performants.
             </h1>
             <p className="hero__lead">
               Du design UI/UX au développement web, mobile et backend, nous concevons des solutions
