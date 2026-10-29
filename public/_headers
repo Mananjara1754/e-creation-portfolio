@@ -14,6 +14,8 @@
 # forcer leur type pour que navigateurs et réseaux sociaux les reconnaissent.
 /icon
   Content-Type: image/png
+/icon1
+  Content-Type: image/png
 /apple-icon
   Content-Type: image/png
 /opengraph-image
