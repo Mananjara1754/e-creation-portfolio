@@ -22,7 +22,7 @@ export function Footer() {
           </div>
 
           <nav className="footer__col" aria-label="Pied de page">
-            <span className="footer__title">NAVIGATION</span>
+            <p className="footer__title">Navigation</p>
             {site.nav.map((link) => (
               <Link key={link.href} className="navlink" href={link.href}>
                 {link.label}
@@ -32,7 +32,7 @@ export function Footer() {
 
           {hasContact && (
             <div className="footer__col">
-              <span className="footer__title">CONTACT</span>
+              <p className="footer__title">Contact</p>
               {email && (
                 <a className="navlink" href={`mailto:${email}`}>
                   {email}
